@@ -1,0 +1,16 @@
+# Godot 4+ specific ignores
+.godot/
+/android/
+
+# Imported files are auto-generated from source assets; keep them out unless you commit them deliberately.
+# (Godot 4 stores imports inline/by UID; comment the next line if you want .import files tracked.)
+*.import
+
+# OS/editor cruft
+.DS_Store
+*.swp
+*~
+
+# Superpowers SDD scratch (progress ledger is fine to keep, but task diffs/reports are scratch)
+# Uncomment to ignore scratch:
+# .superpowers/sdd/*.diff
