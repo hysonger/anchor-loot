@@ -26,6 +26,11 @@ func _snap_head_to_hole() -> void:
 	head.global_position = _get_hole_global()
 	chain.clear_points()
 
+func _update_chain() -> void:
+	chain.clear_points()
+	chain.add_point(_get_hole_global())
+	chain.add_point(head.global_position)
+
 # ---- Public API driven by Ship ----
 func can_fire() -> bool:
 	return state_machine.current is IdleState
