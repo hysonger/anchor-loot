@@ -4,7 +4,7 @@ extends Node
 # input is NOT forwarded — the Ship owns all mouse input and drives the
 # anchor via anchor.fire()/request_retract().
 
-var anchor: Node  # back-reference to the Anchor node (set by anchor.gd on _ready)
+var anchor: Anchor  # back-reference to the Anchor node (set by anchor.gd on _ready)
 
 func enter() -> void:
 	pass

@@ -47,7 +47,7 @@ func _apply_visual() -> void:
 		return
 	if kind == Kind.DRIFT:
 		body.color = Color(0.85, 0.6, 0.2, 1)   # amber block
-		body.polygon = PackedVector2Array(-12, -12, 12, -12, 12, 12, -12, 12)
+		body.polygon = PackedVector2Array([Vector2(-12, -12), Vector2(12, -12), Vector2(12, 12), Vector2(-12, 12)])
 	else:
 		body.color = Color(0.2, 0.7, 0.5, 1)     # teal triangle
-		body.polygon = PackedVector2Array(0, -14, 12, 12, -12, 12)
+		body.polygon = PackedVector2Array([Vector2(0, -14), Vector2(12, 12), Vector2(-12, 12)])

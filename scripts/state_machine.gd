@@ -13,7 +13,7 @@ func _collect_states() -> Dictionary:
 			d[child.name] = child
 	return d
 
-func init(initial_state_name: String, anchor: Node) -> void:
+func init(initial_state_name: String, anchor: Anchor) -> void:
 	for s in states.values():
 		s.anchor = anchor
 	change_to(initial_state_name)
