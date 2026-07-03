@@ -28,8 +28,7 @@ script = ExtResource("5_retract")
 default_color = Color(0.35, 0.35, 0.4, 1)
 width = 3.0
 
-[node name="Head" type="Area2D" parent="."]
-groups = ["anchor_head"]
+[node name="Head" type="Area2D" parent="." groups=["anchor_head"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Head"]
 shape = SubResource("RectangleShape2D_1")

@@ -5,8 +5,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1"]
 size = Vector2(90, 40)
 
-[node name="Ship" type="Area2D"]
-groups = ["ship"]
+[node name="Ship" type="Area2D" groups=["ship"]]
 position = Vector2(150, 160)
 script = ExtResource("1_ship")
 
