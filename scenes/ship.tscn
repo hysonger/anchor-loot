@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/ship.gd" id="1_ship"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1"]
+size = Vector2(90, 40)
+
+[node name="Ship" type="Area2D"]
+groups = ["ship"]
+position = Vector2(150, 160)
+script = ExtResource("1_ship")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_1")
+
+[node name="Hull" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-45, -10, 45, -10, 40, 10, -40, 10)
+color = Color(0.55, 0.35, 0.2, 1)
+
+[node name="Sail" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(0, -50, 0, -10, -20, -10)
+color = Color(0.9, 0.9, 0.9, 1)
