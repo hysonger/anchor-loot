@@ -336,69 +336,9 @@ func request_retract() -> void:
 
 Note: references `LaunchedState` and `RetractingState` which don't exist yet — Task 4/5 add them. The anchor won't compile-check cleanly until then, which is expected; defer the compile check to after Task 5.
 
-- [ ] **Step 3: Create `scenes/anchor.tscn` via MCP**
+- [ ] **Step 3: Write the complete `scenes/anchor.tscn`**
 
-1. MCP `create_scene` with `projectPath`, `scenePath="scenes/anchor.tscn"`, `rootNodeType="Node2D"`.
-2. MCP `add_node`: parentNodePath="root", nodeType="Node", nodeName="StateMachine".
-3. MCP `add_node`: parentNodePath="root/StateMachine", nodeType="Node", nodeName="Idle". (Launched/Retracting added in Task 4/5; the StateMachine `_collect_states` runs at `_ready` so adding them later is fine — but Idle alone is enough for this task's visual test.)
-4. MCP `add_node`: parentNodePath="root", nodeType="Line2D", nodeName="Chain".
-5. MCP `add_node`: parentNodePath="root", nodeType="Area2D", nodeName="Head".
-6. MCP `add_node`: parentNodePath="root/Head", nodeType="CollisionShape2D", nodeName="CollisionShape2D".
-7. MCP `add_node`: parentNodePath="root/Head", nodeType="CollisionShape2D" → actually use `Polygon2D`, nodeName="Polygon2D".
-
-Then edit the `.tscn` to attach scripts and set the Node types' script paths. Open the file and set:
-- Root `Anchor` node: `[node name="Anchor" type="Node2D"]` then add `script = ExtResource("1")` with `[ext_resource type="Script" path="res://scripts/anchor.gd" id="1"]`.
-- `StateMachine` node: type `Node`, script `res://scripts/state_machine.gd`.
-- `Idle` node: type `Node`, script `res://scripts/anchor_states/idle.gd`.
-- `Chain` (Line2D): set `default_color` to a dark steel color, `width = 3.0`.
-- `Head/CollisionShape2D`: assign a `RectangleShape2D` resource size `(16, 16)` — edit the tscn to embed `[sub_resource type="RectangleShape2D" id="rs"] shape = Rect2(-8,-8,16,16)` and reference it. (Note: RectangleShape2D in Godot 4 uses `size` property, not `extents`.)
-- `Head/Polygon2D`: points for a small anchor-head triangle, e.g. `PackedVector2Array(0, -8, 10, 8, -10, 8)`, color dark gray.
-- Add group `anchor_head` to the `Head` node: `groups=["anchor_head"]`.
-
-A full hand-written `.tscn` for `anchor.tscn` is provided in Step 4 to avoid incremental MCP fiddling — **write the whole file directly instead of calling add_node repeatedly**: use the Write tool to create `scenes/anchor.tscn` with the content in Step 4. (The MCP `add_node` calls above are the conceptual equivalent; the Write tool produces a cleaner, complete file in one step.)
-
-- [ ] **Step 4: Write the complete `scenes/anchor.tscn` file**
-
-```ini
-[gd_scene load_steps=8 format=3 uid="uid://anchortscn001"]
-
-[ext_resource type="Script" path="res://scripts/anchor.gd" id="1_anchor"]
-[ext_resource type="Script" path="res://scripts/state_machine.gd" id="2_sm"]
-[ext_resource type="Script" path="res://scripts/anchor_states/idle.gd" id="3_idle"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1"]
-size = Vector2(16, 16)
-
-[sub_resource type="SceneReplicationConfig" id="dummy_cfg"]
-_dummy = true
-
-[node name="Anchor" type="Node2D"]
-script = ExtResource("1_anchor")
-
-[node name="StateMachine" type="Node" parent="."]
-script = ExtResource("2_sm")
-
-[node name="Idle" type="Node" parent="StateMachine"]
-script = ExtResource("3_idle")
-
-[node name="Chain" type="Line2D" parent="."]
-default_color = Color(0.35, 0.35, 0.4, 1)
-width = 3.0
-
-[node name="Head" type="Area2D" parent="."]
-groups = ["anchor_head"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Head"]
-shape = SubResource("RectangleShape2D_1")
-
-[node name="Polygon2D" type="Polygon2D" parent="Head"]
-polygon = PackedVector2Array(0, -8, 10, 8, -10, 8)
-color = Color(0.3, 0.3, 0.3, 1)
-```
-
-Remove the bogus `SceneReplicationConfig` `dummy_cfg` sub_resource — it was a mistake; delete those two lines so `load_steps` becomes 7 (or leave load_steps off; Godot recalculates). Final clean file has ext_resources 1-3, one RectangleShape2D sub_resource, and the node tree. Re-count `load_steps`: 3 ext + 1 sub = 4. Set `load_steps=4`.
-
-Final clean `scenes/anchor.tscn`:
+Do NOT use the MCP `create_scene`/`add_node` tools for this — write the entire file in one go with the Write tool. (The MCP add_node calls described in some skills are an alternative path, but a single Write produces a cleaner, complete scene file.) Use exactly this content:
 
 ```ini
 [gd_scene load_steps=4 format=3]
@@ -434,7 +374,43 @@ polygon = PackedVector2Array(0, -8, 10, 8, -10, 8)
 color = Color(0.3, 0.3, 0.3, 1)
 ```
 
-- [ ] **Step 5: Verify the anchor scene loads**
+Notes: `Head` carries the `anchor_head` group (so hazards detect it). `load_steps=4` = 3 ext_resources + 1 sub_resource. The `Launched`/`Retracting` state nodes are added in Tasks 4 and 5 by rewriting this same file.
+
+```ini
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/anchor.gd" id="1_anchor"]
+[ext_resource type="Script" path="res://scripts/state_machine.gd" id="2_sm"]
+[ext_resource type="Script" path="res://scripts/anchor_states/idle.gd" id="3_idle"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1"]
+size = Vector2(16, 16)
+
+[node name="Anchor" type="Node2D"]
+script = ExtResource("1_anchor")
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("2_sm")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("3_idle")
+
+[node name="Chain" type="Line2D" parent="."]
+default_color = Color(0.35, 0.35, 0.4, 1)
+width = 3.0
+
+[node name="Head" type="Area2D" parent="."]
+groups = ["anchor_head"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Head"]
+shape = SubResource("RectangleShape2D_1")
+
+[node name="Polygon2D" type="Polygon2D" parent="Head"]
+polygon = PackedVector2Array(0, -8, 10, 8, -10, 8)
+color = Color(0.3, 0.3, 0.3, 1)
+```
+
+- [ ] **Step 4: Verify the anchor scene loads**
 
 Launch editor via MCP `launch_editor`, then `get_debug_output`. Expected: scene loads, `IdleState` is the initial state. No errors. The head sits at `(SHIP_X, WATERLINE_Y)` because `ship` is null. Close editor.
 
@@ -575,57 +551,13 @@ func physics_process(delta: float) -> void:
 	if dist <= ARRIVE_THRESHOLD:
 		anchor.state_machine.change_to("Idle")
 		return
-	var step := ANCHOR_RETRACT_STEP(delta, dist)
-	anchor.head.global_position += to_hole.normalized() * step
-	anchor._update_chain()
-
-# Pull back at fixed px/s, but never overshoot.
-func ANCHOR_RETRACT_STEP(delta: float, dist: float) -> float:
-	return min(dist, Game.ANCHOR_RETRACT_SPEED * delta)
-```
-
-Actually inline the helper for clarity — replace the body of `physics_process` and remove the helper:
-
-```gdscript
-func physics_process(delta: float) -> void:
-	var hole := anchor._get_hole_global()
-	var to_hole := hole - anchor.head.global_position
-	var dist := to_hole.length()
-	if dist <= ARRIVE_THRESHOLD:
-		anchor.state_machine.change_to("Idle")
-		return
+	# Pull back at fixed px/s, but never overshoot the hole.
 	var step := minf(dist, Game.ANCHOR_RETRACT_SPEED * delta)
 	anchor.head.global_position += to_hole.normalized() * step
 	anchor._update_chain()
 ```
 
-Use this cleaner version (the function-name-in-caps `ANCHOR_RETRACT_STEP` was awkward; the inline `minf` is idiomatic Godot 4).
-
-- [ ] **Step 2: Final `scripts/anchor_states/retracting.gd`**
-
-```gdscript
-class_name RetractingState
-extends State
-# Anchor being pulled back to the hole. When close enough, go Idle.
-
-const ARRIVE_THRESHOLD := 6.0
-
-func enter() -> void:
-	anchor.chain.visible = true
-
-func physics_process(delta: float) -> void:
-	var hole := anchor._get_hole_global()
-	var to_hole := hole - anchor.head.global_position
-	var dist := to_hole.length()
-	if dist <= ARRIVE_THRESHOLD:
-		anchor.state_machine.change_to("Idle")
-		return
-	var step := minf(dist, Game.ANCHOR_RETRACT_SPEED * delta)
-	anchor.head.global_position += to_hole.normalized() * step
-	anchor._update_chain()
-```
-
-- [ ] **Step 3: Add Retracting node to `scenes/anchor.tscn`**
+- [ ] **Step 2: Add Retracting node to `scenes/anchor.tscn`**
 
 Add ext_resource `id="5_retract"` for `retracting.gd` and the node. `load_steps` becomes 6. The new tree under StateMachine: Idle, Launched, Retracting. Write the final complete file:
 
@@ -671,7 +603,7 @@ polygon = PackedVector2Array(0, -8, 10, 8, -10, 8)
 color = Color(0.3, 0.3, 0.3, 1)
 ```
 
-- [ ] **Step 4: Verify**
+- [ ] **Step 3: Verify**
 
 Launch editor, `get_debug_output`. Expected: no errors. The full state loop is now structurally present (Idle/Launched/Retracting all exist), so `anchor.fire()` would walk the whole loop if invoked. No invocation yet — Task 6 adds the Ship driver.
 
