@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/anchor.gd" id="1_anchor"]
+[ext_resource type="Script" path="res://scripts/state_machine.gd" id="2_sm"]
+[ext_resource type="Script" path="res://scripts/anchor_states/idle.gd" id="3_idle"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1"]
+size = Vector2(16, 16)
+
+[node name="Anchor" type="Node2D"]
+script = ExtResource("1_anchor")
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("2_sm")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("3_idle")
+
+[node name="Chain" type="Line2D" parent="."]
+default_color = Color(0.35, 0.35, 0.4, 1)
+width = 3.0
+
+[node name="Head" type="Area2D" parent="."]
+groups = ["anchor_head"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Head"]
+shape = SubResource("RectangleShape2D_1")
+
+[node name="Polygon2D" type="Polygon2D" parent="Head"]
+polygon = PackedVector2Array(0, -8, 10, 8, -10, 8)
+color = Color(0.3, 0.3, 0.3, 1)
