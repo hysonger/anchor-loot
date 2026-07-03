@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3]
+[gd_scene load_steps=6 format=3]
 
 [ext_resource type="Script" path="res://scripts/anchor.gd" id="1_anchor"]
 [ext_resource type="Script" path="res://scripts/state_machine.gd" id="2_sm"]
 [ext_resource type="Script" path="res://scripts/anchor_states/idle.gd" id="3_idle"]
 [ext_resource type="Script" path="res://scripts/anchor_states/launched.gd" id="4_launched"]
+[ext_resource type="Script" path="res://scripts/anchor_states/retracting.gd" id="5_retract"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1"]
 size = Vector2(16, 16)
@@ -19,6 +20,9 @@ script = ExtResource("3_idle")
 
 [node name="Launched" type="Node" parent="StateMachine"]
 script = ExtResource("4_launched")
+
+[node name="Retracting" type="Node" parent="StateMachine"]
+script = ExtResource("5_retract")
 
 [node name="Chain" type="Line2D" parent="."]
 default_color = Color(0.35, 0.35, 0.4, 1)
