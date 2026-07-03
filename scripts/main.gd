@@ -59,7 +59,7 @@ func _on_flow_changed(state: Game.FlowState) -> void:
 func _on_game_over() -> void:
 	pass  # flow_changed(GAME_OVER) already handles messaging/clear.
 
-func _apply_button(show: bool, text: String) -> void:
+func _apply_button(do_show: bool, text: String) -> void:
 	start_button.text = text
-	start_button.visible = show
-	start_button.disabled = not show
+	start_button.visible = do_show
+	start_button.disabled = not do_show

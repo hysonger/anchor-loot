@@ -26,7 +26,7 @@ const SHIP_X := 150
 
 const MAX_DURABILITY := 100
 const SCORE_PER_KILL := 10
-const DAMAGE_PER_HIT := 5
+const DAMAGE_PER_HIT := 25
 
 const HAZARD_VX_MIN := -180.0
 const HAZARD_VX_MAX := -90.0
