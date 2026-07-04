@@ -54,7 +54,7 @@ const TREASURE_FALL_SPEED_LARGE := 50
 
 const SPAWN_PROTECTION_TIME := 0.3
 
-const MAX_CHAIN_LEN := 500
+const MAX_CHAIN_LEN := 650
 const ANCHOR_FIRE_SPEED := 800.0
 const ANCHOR_RETRACT_SPEED := 900.0
 # Anchor speed curve: horizontal shots run at this fraction of vertical speed.
