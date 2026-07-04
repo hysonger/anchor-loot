@@ -59,7 +59,7 @@ const ANCHOR_FIRE_SPEED := 800.0
 const ANCHOR_RETRACT_SPEED := 900.0
 # Anchor speed curve: horizontal shots run at this fraction of vertical speed.
 # 0.0 = motionless at horizontal, 1.0 = no compensation (all directions equal).
-const ANCHOR_SPEED_MIN_RATIO := 0.4
+const ANCHOR_SPEED_MIN_RATIO := 0.8125   # horizontal speed / vertical speed (650 / 800)
 # No FIRE_ANGLE_MAX_DEG: the only aim constraint is "never up" (dir.y >= 0); horizontal is the max.
 
 func is_playing() -> bool:
