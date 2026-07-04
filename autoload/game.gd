@@ -36,6 +36,8 @@ const JUNK_VY_MAX := -25.0
 # ---- 箱子（ChestItem）----
 const CHEST_VX_MIN := -150.0
 const CHEST_VX_MAX := -80.0
+const CHEST_SWING_AMP  := 8.0
+const CHEST_SWING_FREQ := 1.5
 
 # ---- 鱼（NormalFish / AggressiveFish 巡逻态）----
 const FISH_VX_MIN    := -150.0
