@@ -8,7 +8,7 @@ signal durability_changed(current: int, maxv: int)
 signal score_changed(score: int)
 signal game_over()
 signal flow_changed(state: FlowState)
-signal score_popup(points: int, at_position: Vector2)
+signal score_popup(points: int, multiplier: int, at_position: Vector2)
 
 var flow_state: FlowState = FlowState.READY
 var durability: int = MAX_DURABILITY
