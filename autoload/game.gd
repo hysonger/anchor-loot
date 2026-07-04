@@ -25,13 +25,6 @@ const SPAWN_Y_MAX := 560
 const SHIP_X := 150
 
 const MAX_DURABILITY := 100
-const SCORE_PER_KILL := 10
-
-const FLOATER_VY_MIN := -70.0
-const FLOATER_VY_MAX := -25.0
-
-const ITEM_VX_MIN    := -180.0
-const ITEM_VX_MAX    := -90.0
 
 # ---- 垃圾（JunkItem）----
 const JUNK_VX_MIN := -180.0
