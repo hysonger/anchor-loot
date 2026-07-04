@@ -8,6 +8,7 @@ const POPUP_MAX_Y := Game.WATERLINE_Y - 140.0
 const POPUP_X_JITTER := 20.0
 const POPUP_TWEEN_DURATION := 0.3
 const POPUP_FONT_SIZE := 18
+const POPUP_LIFETIME := 2.0
 
 @onready var spawner: Spawner = $Spawner
 @onready var ship: Ship = $Ship
@@ -94,6 +95,21 @@ func _on_score_popup(points: int, at_position: Vector2) -> void:
 	_popup_labels.append(label)
 	_slide_popups()
 	_prune_popups()
+	# Time-based fade: if this label hasn't been pruned by height after
+	# POPUP_LIFETIME seconds, fade it out anyway.
+	get_tree().create_timer(POPUP_LIFETIME).timeout.connect(_on_popup_timeout.bind(label))
+
+func _on_popup_timeout(lbl: Label) -> void:
+	if not is_instance_valid(lbl):
+		return
+	var idx := _popup_labels.find(lbl)
+	if idx == -1:
+		return  # already pruned by height
+	_popup_labels.remove_at(idx)
+	var tween := create_tween()
+	tween.tween_property(lbl, "modulate:a", 0.0, POPUP_TWEEN_DURATION).set_trans(Tween.TRANS_QUAD)
+	tween.tween_callback(lbl.queue_free)
+	_slide_popups()
 
 func _slide_popups() -> void:
 	for i in range(_popup_labels.size()):
