@@ -28,7 +28,7 @@ func _pick_loot_scene() -> PackedScene:
 	for entry in LOOT_TABLE:
 		total += entry.weight
 	for entry in LOOT_TABLE:
-		var norm := entry.weight / total
+		var norm: float = entry.weight / total
 		if roll <= norm:
 			return entry.scene
 		roll -= norm

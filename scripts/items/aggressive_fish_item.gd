@@ -1,11 +1,8 @@
 class_name AggressiveFishItem
-extends NormalFishItem
+extends "res://scripts/items/normal_fish_item.gd"
 # 攻击性鱼：继承普通鱼摆动。进入检测范围后转向朝向船，停顿后直线冲撞。
 
 enum AggroState { PATROL, WINDUP, CHARGE }
-
-const DAMAGE := 35
-const SCORE := 40
 
 var _aggro_state: AggroState = AggroState.PATROL
 var _windup_timer: float = 0.0
@@ -39,7 +36,7 @@ func _face_ship() -> void:
 	rotation = _dir_to_ship().angle()
 
 func _get_damage() -> int:
-	return DAMAGE
+	return 35
 
 func _get_score() -> int:
-	return SCORE
+	return 40
