@@ -44,16 +44,16 @@ func _on_score_changed(s: int) -> void:
 func _on_flow_changed(state: Game.FlowState) -> void:
 	match state:
 		Game.FlowState.READY:
-			message_label.text = "准备好抛锚!"
-			_apply_button(true, "开始游戏 (Space)")
+			message_label.text = "点击鼠标🖱抛锚!"
+			_apply_button(true, "开始游戏 [Space]")
 			spawner.clear_all()
 		Game.FlowState.PLAYING:
 			message_label.text = ""
 			start_button.visible = false
 			start_button.disabled = true
 		Game.FlowState.GAME_OVER:
-			message_label.text = "Game Over — 按空格重开"
-			_apply_button(true, "重新开始 (Space)")
+			message_label.text = "GAME OVER"
+			_apply_button(true, "重新开始 [Space]")
 			spawner.clear_all()
 
 func _on_game_over() -> void:
