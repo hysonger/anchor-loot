@@ -3,6 +3,7 @@ extends State
 # Anchor resting at the ship's anchor hole, chain hidden.
 
 func enter() -> void:
+	anchor.combo_count = 0
 	anchor.head.visible = true
 	anchor.chain.visible = false
 	anchor._snap_head_to_hole()
