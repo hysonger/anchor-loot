@@ -58,6 +58,7 @@ func _on_flow_changed(state: Game.FlowState) -> void:
 		Game.FlowState.READY:
 			message_label.text = ""
 			_apply_button(true, "开始游戏 [Space]")
+			_clear_popups()
 			spawner.clear_all()
 		Game.FlowState.PLAYING:
 			message_label.text = "点击鼠标🖱抛锚!"
@@ -67,6 +68,7 @@ func _on_flow_changed(state: Game.FlowState) -> void:
 		Game.FlowState.GAME_OVER:
 			message_label.text = "GAME OVER"
 			_apply_button(true, "重新开始 [Space]")
+			_clear_popups()
 			spawner.clear_all()
 
 func _on_game_over() -> void:
@@ -86,6 +88,7 @@ func _on_score_popup(points: int, at_position: Vector2) -> void:
 	label.add_theme_font_size_override("font_size", POPUP_FONT_SIZE)
 	label.add_theme_color_override("font_color", Color.GOLD)
 	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	label.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	label.position = at_position + Vector2(randf_range(-POPUP_X_JITTER, POPUP_X_JITTER), 0.0)
 	add_child(label)
 	_popup_labels.append(label)
@@ -108,3 +111,9 @@ func _prune_popups() -> void:
 			tween.tween_property(lbl, "modulate:a", 0.0, POPUP_TWEEN_DURATION).set_trans(Tween.TRANS_QUAD)
 			tween.tween_callback(lbl.queue_free)
 			_popup_labels.remove_at(i)
+
+func _clear_popups() -> void:
+	for lbl in _popup_labels:
+		if is_instance_valid(lbl):
+			lbl.queue_free()
+	_popup_labels.clear()
