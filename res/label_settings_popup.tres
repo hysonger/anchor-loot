@@ -1,0 +1,10 @@
+[gd_resource type="LabelSettings" format=3 uid="uid://fd1ou6q7b8pj"]
+
+[ext_resource type="SystemFont" uid="uid://dl1qis3skbd5y" path="res://res/system_font.tres" id="1_6qtkx"]
+
+[resource]
+font = ExtResource("1_6qtkx")
+outline_size = 4
+outline_color = Color(0.75199103, 0.6901387, 0.399726, 1)
+shadow_size = 4
+shadow_color = Color(0.27022192, 0.27022192, 0.2702219, 0.627451)

@@ -9,6 +9,7 @@ const POPUP_X_JITTER := 20.0
 const POPUP_TWEEN_DURATION := 0.3
 const POPUP_FONT_SIZE := 18
 const POPUP_LIFETIME := 2.0
+const POPUP_LABEL_SETTINGS = preload("res://res/label_settings_popup.tres")
 
 @onready var spawner: Spawner = $Spawner
 @onready var ship: Ship = $Ship
@@ -94,6 +95,7 @@ func _on_score_popup(points: int, multiplier: int, at_position: Vector2) -> void
 	label.add_theme_color_override("font_color", Color.GOLD)
 	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	label.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	label.label_settings = POPUP_LABEL_SETTINGS
 	label.position = at_position + Vector2(randf_range(-POPUP_X_JITTER, POPUP_X_JITTER), 0.0)
 	add_child(label)
 	_popup_labels.append(label)
