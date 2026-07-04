@@ -1,9 +1,10 @@
 class_name Spawner
 extends Node2D
-# Periodically spawns hazards on the right edge at a random depth while playing.
+# Periodically spawns items on the right edge at a random depth while playing.
 
 @export var spawn_interval := 1.4
-const HAZARD_SCENE := preload("res://scenes/hazard.tscn")
+const DRIFT_ITEM_SCENE   := preload("res://scenes/drift_item.tscn")
+const FLOATER_ITEM_SCENE := preload("res://scenes/floater_item.tscn")
 
 var _timer := 0.0
 
@@ -16,13 +17,13 @@ func _physics_process(delta: float) -> void:
 		_spawn_one()
 
 func _spawn_one() -> void:
-	var h: Hazard = HAZARD_SCENE.instantiate()
-	add_child(h)
-	var k: Hazard.Kind = Hazard.Kind.DRIFT if randf() < 0.5 else Hazard.Kind.FLOATER
+	var scene: PackedScene = DRIFT_ITEM_SCENE if randf() < 0.5 else FLOATER_ITEM_SCENE
+	var item: Item = scene.instantiate()
+	add_child(item)
 	var y := randf_range(Game.SPAWN_Y_MIN, Game.SPAWN_Y_MAX)
-	h.setup(k, Vector2(Game.SPAWN_X, y))
+	item.setup(Vector2(Game.SPAWN_X, y))
 
 func clear_all() -> void:
 	for c in get_children():
-		if c is Hazard:
+		if c is Item:
 			c.queue_free()
