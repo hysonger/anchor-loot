@@ -20,10 +20,14 @@ const POPUP_LABEL_SETTINGS = preload("res://res/label_settings_popup.tres")
 @onready var start_button: TextureButton = $HUD/StartButton
 @onready var start_btn_label: Label = $HUD/StartButton/StartBtnLabel
 @onready var start_btn_overlay: Panel = $HUD/StartButton/HoverOverlay
-@onready var tip_clean_timer = $TipCleanTimer
+@onready var msg_clean_timer = $MsgCleanTimer
 
 # Popup manager: active floating score labels, newest last (bottom of stack).
 var _popup_labels: Array[Label] = []
+
+func show_message_oneshot(msg: String, time: float = 5.0):
+	message_label.text = msg
+	msg_clean_timer.call_deferred("start", time)
 
 func _ready() -> void:
 	# Wire ship <-> anchor.
@@ -55,7 +59,7 @@ func _on_durability_changed(current: int, maxv: int) -> void:
 	durability_bar.value = current
 
 func _on_score_changed(s: int) -> void:
-	score_label.text = "Score: %d" % s
+	score_label.text = "分数: %d" % s
 
 func _on_flow_changed(state: Game.FlowState) -> void:
 	match state:
@@ -65,10 +69,10 @@ func _on_flow_changed(state: Game.FlowState) -> void:
 			_clear_popups()
 			spawner.clear_all()
 		Game.FlowState.PLAYING:
-			message_label.text = "点击鼠标🖱抛锚！再次点击收回！"
 			start_button.visible = false
 			start_button.disabled = true
-			tip_clean_timer.call_deferred("start")
+			show_message_oneshot("点击鼠标🖱抛锚！再次点击收回！")
+
 		Game.FlowState.GAME_OVER:
 			message_label.text = "GAME OVER"
 			_apply_button(true, "重新开始")

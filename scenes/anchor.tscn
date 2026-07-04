@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://b4tsd5ai4pvyt" path="res://scripts/anchor_states/idle.gd" id="3_idle"]
 [ext_resource type="Script" uid="uid://3lujua0coytv" path="res://scripts/anchor_states/launched.gd" id="4_launched"]
 [ext_resource type="Script" uid="uid://bctpuhecatjpv" path="res://scripts/anchor_states/retracting.gd" id="5_retract"]
+[ext_resource type="Texture2D" uid="uid://b3q57pxu15nky" path="res://res/chain.png" id="6_17eia"]
 [ext_resource type="Texture2D" uid="uid://c4sy6mchpxxjo" path="res://res/anchor_0deg-256x256.png" id="6_hsvxw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1"]
@@ -25,9 +26,12 @@ script = ExtResource("4_launched")
 script = ExtResource("5_retract")
 
 [node name="Chain" type="Line2D" parent="." unique_id=1533038872]
+texture_repeat = 2
 points = PackedVector2Array(-5, 5)
 width = 3.0
 default_color = Color(0.35, 0.35, 0.4, 1)
+texture = ExtResource("6_17eia")
+texture_mode = 1
 
 [node name="Head" type="Area2D" parent="." unique_id=1783710916 groups=["anchor_head"]]
 

@@ -47,10 +47,10 @@ script = ExtResource("2_spawner")
 
 [node name="HUD" parent="." unique_id=232882309 instance=ExtResource("6_tefeu")]
 
-[node name="TipCleanTimer" type="Timer" parent="." unique_id=1657589178]
+[node name="MsgCleanTimer" type="Timer" parent="." unique_id=1657589178]
 wait_time = 5.0
 one_shot = true
 
-[connection signal="timeout" from="TipCleanTimer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="MsgCleanTimer" to="." method="_on_timer_timeout"]
 
 [editable path="HUD"]
