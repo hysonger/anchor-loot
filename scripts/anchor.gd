@@ -13,6 +13,14 @@ var ship: Node = null
 # Current fly direction (normalized), valid while Launched.
 var fly_direction: Vector2 = Vector2.ZERO
 
+# Combo counter: incremented on each hit during one flight. Reset on Idle.
+var combo_count: int = 0
+
+# Called by Item on hit. Returns the multiplier for this hit (1, 2, 3...).
+func register_hit() -> int:
+	combo_count += 1
+	return combo_count
+
 func _ready() -> void:
 	state_machine.init("Idle", self)
 
