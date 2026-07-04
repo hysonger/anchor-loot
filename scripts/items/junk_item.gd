@@ -2,7 +2,7 @@ class_name JunkItem
 extends Item
 # 垃圾：左移 + 上浮至水面即止（复用基类水线钳制），撞船扣耐久。
 
-const DAMAGE := 25
+const DAMAGE := 20
 const SCORE := 10
 
 func _init_velocity() -> Vector2:

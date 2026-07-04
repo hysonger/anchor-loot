@@ -4,6 +4,9 @@ extends "res://scripts/items/normal_fish_item.gd"
 
 enum AggroState { PATROL, WINDUP, CHARGE }
 
+const AGGRO_DAMAGE := 30
+const AGGRO_SCORE := 40
+
 var _aggro_state: AggroState = AggroState.PATROL
 var _windup_timer: float = 0.0
 
@@ -36,7 +39,7 @@ func _face_ship() -> void:
 	rotation = _dir_to_ship().angle()
 
 func _get_damage() -> int:
-	return 35
+	return AGGRO_DAMAGE
 
 func _get_score() -> int:
-	return 40
+	return AGGRO_SCORE

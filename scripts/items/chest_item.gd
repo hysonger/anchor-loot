@@ -6,10 +6,8 @@ const DAMAGE := 25
 const SCORE := 10
 
 const LOOT_TABLE: Array[Dictionary] = [
-	{"scene": preload("res://scenes/junk_item.tscn"),             "weight": 0.100},
-	{"scene": preload("res://scenes/normal_fish_item.tscn"),      "weight": 0.050},
-	{"scene": preload("res://scenes/aggressive_fish_item.tscn"),  "weight": 0.025},
-	{"scene": preload("res://scenes/treasure_item_small.tscn"),   "weight": 0.020},
+	{"scene": preload("res://scenes/aggressive_fish_item.tscn"),  "weight": 0.010},
+	{"scene": preload("res://scenes/treasure_item_small.tscn"),   "weight": 0.030},
 	{"scene": preload("res://scenes/treasure_item_large.tscn"),   "weight": 0.010},
 ]
 
@@ -19,7 +17,7 @@ func _init_velocity() -> Vector2:
 func _on_killed() -> void:
 	var scene: PackedScene = _pick_loot_scene()
 	var item: Item = scene.instantiate()
-	get_parent().add_child(item)
+	get_parent().call_deferred("add_child", item) # 需要使用 call_deferred 语法，否则会报错
 	item.setup(global_position)
 
 func _pick_loot_scene() -> PackedScene:

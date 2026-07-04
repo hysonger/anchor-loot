@@ -1,38 +1,38 @@
-[gd_scene load_steps=6 format=3]
+[gd_scene format=3 uid="uid://2nd43pddcdlb"]
 
-[ext_resource type="Script" path="res://scripts/anchor.gd" id="1_anchor"]
-[ext_resource type="Script" path="res://scripts/state_machine.gd" id="2_sm"]
-[ext_resource type="Script" path="res://scripts/anchor_states/idle.gd" id="3_idle"]
-[ext_resource type="Script" path="res://scripts/anchor_states/launched.gd" id="4_launched"]
-[ext_resource type="Script" path="res://scripts/anchor_states/retracting.gd" id="5_retract"]
+[ext_resource type="Script" uid="uid://b7ehuvmooayn0" path="res://scripts/anchor.gd" id="1_anchor"]
+[ext_resource type="Script" uid="uid://bab8onpj8i350" path="res://scripts/state_machine.gd" id="2_sm"]
+[ext_resource type="Script" uid="uid://b4tsd5ai4pvyt" path="res://scripts/anchor_states/idle.gd" id="3_idle"]
+[ext_resource type="Script" uid="uid://3lujua0coytv" path="res://scripts/anchor_states/launched.gd" id="4_launched"]
+[ext_resource type="Script" uid="uid://bctpuhecatjpv" path="res://scripts/anchor_states/retracting.gd" id="5_retract"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1"]
 size = Vector2(16, 16)
 
-[node name="Anchor" type="Node2D"]
+[node name="Anchor" type="Node2D" unique_id=1312433041]
 script = ExtResource("1_anchor")
 
-[node name="StateMachine" type="Node" parent="."]
+[node name="StateMachine" type="Node" parent="." unique_id=832673370]
 script = ExtResource("2_sm")
 
-[node name="Idle" type="Node" parent="StateMachine"]
+[node name="Idle" type="Node" parent="StateMachine" unique_id=997138819]
 script = ExtResource("3_idle")
 
-[node name="Launched" type="Node" parent="StateMachine"]
+[node name="Launched" type="Node" parent="StateMachine" unique_id=1335341508]
 script = ExtResource("4_launched")
 
-[node name="Retracting" type="Node" parent="StateMachine"]
+[node name="Retracting" type="Node" parent="StateMachine" unique_id=761463912]
 script = ExtResource("5_retract")
 
-[node name="Chain" type="Line2D" parent="."]
-default_color = Color(0.35, 0.35, 0.4, 1)
+[node name="Chain" type="Line2D" parent="." unique_id=1533038872]
 width = 3.0
+default_color = Color(0.35, 0.35, 0.4, 1)
 
-[node name="Head" type="Area2D" parent="." groups=["anchor_head"]]
+[node name="Head" type="Area2D" parent="." unique_id=1783710916 groups=["anchor_head"]]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Head"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Head" unique_id=1420797330]
 shape = SubResource("RectangleShape2D_1")
 
-[node name="Polygon2D" type="Polygon2D" parent="Head"]
-polygon = PackedVector2Array(0, -8, 10, 8, -10, 8)
+[node name="Polygon2D" type="Polygon2D" parent="Head" unique_id=1977919206]
 color = Color(0.3, 0.3, 0.3, 1)
+polygon = PackedVector2Array(0, -8, 10, 8, -10, 8)
