@@ -14,3 +14,6 @@
 # Superpowers SDD scratch (progress ledger is fine to keep, but task diffs/reports are scratch)
 # Uncomment to ignore scratch:
 # .superpowers/sdd/*.diff
+
+# Claude Code specific ignores
+.claude/worktrees/

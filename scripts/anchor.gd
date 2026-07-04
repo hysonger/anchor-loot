@@ -23,6 +23,10 @@ func register_hit() -> int:
 
 func _ready() -> void:
 	state_machine.init("Idle", self)
+	Game.game_over.connect(_on_game_over)
+
+func _on_game_over() -> void:
+	state_machine.change_to("Idle")
 
 # ---- Hole position (where the chain starts / head rests) ----
 func _get_hole_global() -> Vector2:
