@@ -33,6 +33,9 @@ const HAZARD_VX_MAX := -90.0
 const FLOATER_VY_MIN := -70.0
 const FLOATER_VY_MAX := -25.0
 
+const ITEM_VX_MIN    := -180.0
+const ITEM_VX_MAX    := -90.0
+
 const MAX_CHAIN_LEN := 460.0
 const ANCHOR_FIRE_SPEED := 650.0
 const ANCHOR_RETRACT_SPEED := 900.0
