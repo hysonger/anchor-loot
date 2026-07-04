@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/items/chest_item.gd" id="1_chest_item"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1"]
+size = Vector2(28, 28)
+
+[node name="ChestItem" type="Area2D"]
+script = ExtResource("1_chest_item")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_1")
+
+[node name="Body" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(0, -13, 13, -6.5, 13, 6.5, 0, 13, -13, 6.5, -13, -6.5)
+color = Color(0.55, 0.35, 0.1, 1)
