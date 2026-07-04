@@ -44,6 +44,7 @@ func _on_area_entered(area: Area2D) -> void:
 		return
 	if area.is_in_group("anchor_head"):
 		Game.add_score(_get_score())
+		Game.score_popup.emit(_get_score(), Vector2(Game.SHIP_X, Game.WATERLINE_Y))
 		_on_killed()
 		queue_free()
 	elif area.is_in_group("ship"):
