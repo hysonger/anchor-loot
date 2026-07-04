@@ -33,6 +33,31 @@ const FLOATER_VY_MAX := -25.0
 const ITEM_VX_MIN    := -180.0
 const ITEM_VX_MAX    := -90.0
 
+# ---- 垃圾（JunkItem）----
+const JUNK_VX_MIN := -180.0
+const JUNK_VX_MAX := -90.0
+const JUNK_VY_MIN := -70.0
+const JUNK_VY_MAX := -25.0
+
+# ---- 箱子（ChestItem）----
+const CHEST_VX_MIN := -150.0
+const CHEST_VX_MAX := -80.0
+
+# ---- 鱼（NormalFish / AggressiveFish 巡逻态）----
+const FISH_VX_MIN    := -150.0
+const FISH_VX_MAX    := -80.0
+const FISH_SWING_AMP  := 35.0
+const FISH_SWING_FREQ := 2.5
+
+# ---- 攻击性鱼（AggressiveFish）----
+const AGGRO_DETECT_DIST   := 576.0
+const AGGRO_WINDUP_TIME   := 0.5
+const AGGRO_CHARGE_SPEED  := 380.0
+
+# ---- 宝藏（TreasureItem）----
+const TREASURE_FALL_SPEED_SMALL := 60.0
+const TREASURE_FALL_SPEED_LARGE := 100.0
+
 const MAX_CHAIN_LEN := 460.0
 const ANCHOR_FIRE_SPEED := 650.0
 const ANCHOR_RETRACT_SPEED := 900.0
