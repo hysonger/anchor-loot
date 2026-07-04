@@ -19,11 +19,12 @@
 
 ## 改动范围
 
-### 1. `autoload/game.gd` — 新增可配置常量
+### 1. `autoload/game.gd` — 调整全速 & 新增常量
 
-在 `ANCHOR_RETRACT_SPEED` 行之后添加：
+`ANCHOR_FIRE_SPEED` 从 650 提升到 800。在 `ANCHOR_RETRACT_SPEED` 行之后添加：
 
 ```gdscript
+const ANCHOR_FIRE_SPEED := 800.0
 # Anchor speed curve: horizontal shots run at this fraction of vertical speed.
 # 0.0 = motionless at horizontal, 1.0 = no compensation (all directions equal).
 const ANCHOR_SPEED_MIN_RATIO := 0.4
@@ -41,6 +42,6 @@ anchor.head.global_position += anchor.fly_direction * speed * delta
 
 ## 验证
 
-- 运行游戏，垂直向下点击发射锚 → 速度为 650（全速，无变化）
-- 水平点击发射锚 → 速度约为 260（650 × 0.4）
-- 45° 点击发射锚 → 速度约为 455（650 × 0.7）
+- 运行游戏，垂直向下点击发射锚 → 速度为 800（全速）
+- 水平点击发射锚 → 速度约为 320（800 × 0.4）
+- 45° 点击发射锚 → 速度约为 560（800 × 0.7）

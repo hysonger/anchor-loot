@@ -1,21 +1,21 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene format=3 uid="uid://ddcku5q6ntjgr"]
 
-[ext_resource type="Script" path="res://scripts/ship.gd" id="1_ship"]
+[ext_resource type="Script" uid="uid://deuhkksft6mi7" path="res://scripts/ship.gd" id="1_ship"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1"]
 size = Vector2(90, 40)
 
-[node name="Ship" type="Area2D" groups=["ship"]]
+[node name="Ship" type="Area2D" unique_id=345694495 groups=["ship"]]
 position = Vector2(150, 160)
 script = ExtResource("1_ship")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=508444354]
 shape = SubResource("RectangleShape2D_1")
 
-[node name="Hull" type="Polygon2D" parent="."]
-polygon = PackedVector2Array(-45, -10, 45, -10, 40, 10, -40, 10)
+[node name="Hull" type="Polygon2D" parent="." unique_id=456456992]
 color = Color(0.55, 0.35, 0.2, 1)
+polygon = PackedVector2Array(-45, -10, 45, -10, 40, 10, -40, 10)
 
-[node name="Sail" type="Polygon2D" parent="."]
-polygon = PackedVector2Array(0, -50, 0, -10, -20, -10)
+[node name="Sail" type="Polygon2D" parent="." unique_id=887387244]
 color = Color(0.9, 0.9, 0.9, 1)
+polygon = PackedVector2Array(0, -50, 0, -10, -20, -10)

@@ -6,9 +6,9 @@ const DAMAGE := 25
 const SCORE := 10
 
 const LOOT_TABLE: Array[Dictionary] = [
-	{"scene": preload("res://scenes/aggressive_fish_item.tscn"),  "weight": 0.010},
-	{"scene": preload("res://scenes/treasure_item_small.tscn"),   "weight": 0.030},
-	{"scene": preload("res://scenes/treasure_item_large.tscn"),   "weight": 0.010},
+	{"scene": preload("res://scenes/aggressive_fish_item.tscn"),  "weight": 0.20},
+	{"scene": preload("res://scenes/treasure_item_small.tscn"),   "weight": 0.50},
+	{"scene": preload("res://scenes/treasure_item_large.tscn"),   "weight": 0.10},
 ]
 
 func _init_velocity() -> Vector2:

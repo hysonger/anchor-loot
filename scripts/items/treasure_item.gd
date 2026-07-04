@@ -20,4 +20,4 @@ func _get_damage() -> int:
 	return DAMAGE
 
 func _get_score() -> int:
-	return 50 if treasure_size == Size.SMALL else 100
+	return 100 if treasure_size == Size.SMALL else 500
