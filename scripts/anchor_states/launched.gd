@@ -22,11 +22,19 @@ func physics_process(delta: float) -> void:
 	if anchor.head.global_position.y >= Game.SEABED_Y:
 		_retract()
 		return
+	# Off-screen?
+	if _is_off_screen():
+		_retract()
+		return
 	# Chain too long?
 	# 暂时屏蔽链条长度限制
 	#var hole := anchor._get_hole_global()
 	#if anchor.head.global_position.distance_to(hole) >= Game.MAX_CHAIN_LEN:
 	#	_retract()
+
+func _is_off_screen() -> bool:
+	var p := anchor.head.global_position
+	return p.x < 0 or p.x > Game.VIEWPORT_W or p.y < 0 or p.y > Game.VIEWPORT_H
 
 func _retract() -> void:
 	anchor.state_machine.change_to("Retracting")

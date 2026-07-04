@@ -10,6 +10,12 @@
 [ext_resource type="Theme" uid="uid://8b67ulv0qfx4" path="res://res/theme.tres" id="6_tipki"]
 [ext_resource type="LabelSettings" uid="uid://5qitupxm71og" path="res://res/label_settings.tres" id="8_85g3d"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_85g3d"]
+font_size = 20
+outline_size = 4
+outline_color = Color(1.0588765e-06, 0.51909167, 0.7248655, 1)
+shadow_color = Color(0, 0, 0, 0.627451)
+
 [node name="Main" type="Node2D" unique_id=854110732]
 script = ExtResource("1_main")
 
@@ -96,8 +102,10 @@ offset_top = 24.0
 offset_right = 1128.0
 offset_bottom = 64.0
 theme = ExtResource("6_tipki")
-label_settings = ExtResource("8_85g3d")
+text = "Anchor Loot"
+label_settings = SubResource("LabelSettings_85g3d")
 horizontal_alignment = 2
+vertical_alignment = 1
 
 [node name="StartButton" type="TextureButton" parent="HUD" unique_id=1352448102]
 offset_left = 460.0
