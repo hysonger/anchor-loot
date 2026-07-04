@@ -64,7 +64,7 @@ func _on_flow_changed(state: Game.FlowState) -> void:
 			_clear_popups()
 			spawner.clear_all()
 		Game.FlowState.PLAYING:
-			message_label.text = "点击鼠标🖱抛锚!"
+			message_label.text = "点击鼠标🖱抛锚！再次点击收回！"
 			start_button.visible = false
 			start_button.disabled = true
 			tip_clean_timer.call_deferred("start")

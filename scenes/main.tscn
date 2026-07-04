@@ -58,7 +58,17 @@ offset_bottom = 56.0
 mouse_filter = 2
 theme = ExtResource("6_tipki")
 value = 100.0
+show_percentage = false
 metadata/_edit_group_ = true
+
+[node name="Label" type="Label" parent="HUD/DurabilityBar" unique_id=607858717]
+layout_mode = 0
+offset_left = 15.0
+offset_right = 334.0
+offset_bottom = 34.0
+text = "船只耐久"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="HUD/DurabilityBar" unique_id=674978045]
 layout_mode = 0
@@ -85,6 +95,7 @@ offset_left = 475.0
 offset_top = 24.0
 offset_right = 1128.0
 offset_bottom = 64.0
+theme = ExtResource("6_tipki")
 label_settings = ExtResource("8_85g3d")
 horizontal_alignment = 2
 

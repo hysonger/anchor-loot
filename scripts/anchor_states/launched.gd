@@ -23,9 +23,10 @@ func physics_process(delta: float) -> void:
 		_retract()
 		return
 	# Chain too long?
-	var hole := anchor._get_hole_global()
-	if anchor.head.global_position.distance_to(hole) >= Game.MAX_CHAIN_LEN:
-		_retract()
+	# 暂时屏蔽链条长度限制
+	#var hole := anchor._get_hole_global()
+	#if anchor.head.global_position.distance_to(hole) >= Game.MAX_CHAIN_LEN:
+	#	_retract()
 
 func _retract() -> void:
 	anchor.state_machine.change_to("Retracting")
