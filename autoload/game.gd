@@ -45,13 +45,15 @@ const FISH_SWING_FREQ := 2.5
 # ---- 攻击性鱼（AggressiveFish）----
 const AGGRO_DETECT_DIST   := 576.0
 const AGGRO_WINDUP_TIME   := 0.5
-const AGGRO_CHARGE_SPEED  := 380.0
+const AGGRO_CHARGE_SPEED  := 250.0
 
 # ---- 宝藏（TreasureItem）----
-const TREASURE_FALL_SPEED_SMALL := 60.0
-const TREASURE_FALL_SPEED_LARGE := 100.0
+const TREASURE_FALL_SPEED_SMALL := 10
+const TREASURE_FALL_SPEED_LARGE := 50
 
-const MAX_CHAIN_LEN := 460.0
+const SPAWN_PROTECTION_TIME := 0.3
+
+const MAX_CHAIN_LEN := 500
 const ANCHOR_FIRE_SPEED := 650.0
 const ANCHOR_RETRACT_SPEED := 900.0
 # No FIRE_ANGLE_MAX_DEG: the only aim constraint is "never up" (dir.y >= 0); horizontal is the max.
