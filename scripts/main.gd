@@ -19,6 +19,7 @@ const POPUP_LABEL_SETTINGS = preload("res://res/label_settings_popup.tres")
 @onready var message_label: Label = $HUD/MessageLabel
 @onready var start_button: TextureButton = $HUD/StartButton
 @onready var start_btn_label: Label = $HUD/StartButton/StartBtnLabel
+@onready var start_btn_overlay: Panel = $HUD/StartButton/HoverOverlay
 @onready var tip_clean_timer = $TipCleanTimer
 
 # Popup manager: active floating score labels, newest last (bottom of stack).
@@ -43,6 +44,11 @@ func _ready() -> void:
 	sc.events.append(ev)
 	start_button.shortcut = sc
 	start_button.pressed.connect(Game.on_start_button_pressed)
+
+	# Hover overlay: start fully transparent.
+	start_btn_overlay.modulate.a = 0.0
+	start_button.mouse_entered.connect(_on_start_btn_mouse_entered)
+	start_button.mouse_exited.connect(_on_start_btn_mouse_exited)
 
 	# Initialize HUD + flow to READY without going through a transition.
 	_on_durability_changed(Game.durability, Game.max_durability)
@@ -139,3 +145,11 @@ func _clear_popups() -> void:
 		if is_instance_valid(lbl):
 			lbl.queue_free()
 	_popup_labels.clear()
+
+func _on_start_btn_mouse_entered() -> void:
+	var tween := create_tween()
+	tween.tween_property(start_btn_overlay, "modulate:a", 1.0, 0.2).set_trans(Tween.TRANS_QUAD)
+
+func _on_start_btn_mouse_exited() -> void:
+	var tween := create_tween()
+	tween.tween_property(start_btn_overlay, "modulate:a", 0.0, 0.2).set_trans(Tween.TRANS_QUAD)

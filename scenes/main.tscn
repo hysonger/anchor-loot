@@ -16,6 +16,13 @@ outline_size = 4
 outline_color = Color(1.0588765e-06, 0.51909167, 0.7248655, 1)
 shadow_color = Color(0, 0, 0, 0.627451)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_capsule"]
+bg_color = Color(0, 0, 0, 0.25)
+corner_radius_top_left = 28
+corner_radius_top_right = 28
+corner_radius_bottom_right = 28
+corner_radius_bottom_left = 28
+
 [node name="Main" type="Node2D" unique_id=854110732]
 script = ExtResource("1_main")
 
@@ -125,6 +132,13 @@ text = "开始游戏 [Space]"
 label_settings = ExtResource("8_85g3d")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="HoverOverlay" type="Panel" parent="HUD/StartButton" unique_id=-1153374643]
+layout_mode = 0
+offset_right = 232.0
+offset_bottom = 65.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_capsule")
 
 [node name="TipCleanTimer" type="Timer" parent="." unique_id=1657589178]
 wait_time = 5.0
