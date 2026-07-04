@@ -13,7 +13,9 @@ func enter() -> void:
 	anchor._update_chain()
 
 func physics_process(delta: float) -> void:
-	anchor.head.global_position += anchor.fly_direction * Game.ANCHOR_FIRE_SPEED * delta
+	var speed_factor := Game.ANCHOR_SPEED_MIN_RATIO + (1.0 - Game.ANCHOR_SPEED_MIN_RATIO) * anchor.fly_direction.y
+	var speed := Game.ANCHOR_FIRE_SPEED * speed_factor
+	anchor.head.global_position += anchor.fly_direction * speed * delta
 	anchor._update_chain()
 	# Seabed?
 	if anchor.head.global_position.y >= Game.SEABED_Y:
