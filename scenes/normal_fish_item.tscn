@@ -1,16 +1,39 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene format=3 uid="uid://cyrwqja3fhrbt"]
 
-[ext_resource type="Script" path="res://scripts/items/normal_fish_item.gd" id="1_normal_fish"]
+[ext_resource type="Script" uid="uid://c2boqw3cxrj4" path="res://scripts/items/normal_fish_item.gd" id="1_normal_fish"]
+[ext_resource type="Texture2D" uid="uid://bvvs2v3fen6hl" path="res://res/enemy_matte_00001.png" id="2_l07x2"]
+[ext_resource type="Texture2D" uid="uid://1g4jelil4etm" path="res://res/enemy_matte_00002.png" id="3_4g3lc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1"]
-size = Vector2(24, 30)
+size = Vector2(100, 23)
 
-[node name="NormalFishItem" type="Area2D"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_fbo7h"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_l07x2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_4g3lc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="NormalFishItem" type="Area2D" unique_id=729788437]
 script = ExtResource("1_normal_fish")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=819220031]
+position = Vector2(2, -0.5)
 shape = SubResource("RectangleShape2D_1")
 
-[node name="Body" type="Polygon2D" parent="."]
-polygon = PackedVector2Array(0, -15, 11, 0, 0, 15, -11, 0)
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=544284728]
+position = Vector2(2.9999924, 1.9073486e-06)
+scale = Vector2(0.19628902, 0.200495)
+sprite_frames = SubResource("SpriteFrames_fbo7h")
+
+[node name="Body" type="Polygon2D" parent="." unique_id=379647728]
+visible = false
 color = Color(0.3, 0.5, 0.9, 1)
+polygon = PackedVector2Array(0, -15, 11, 0, 0, 15, -11, 0)

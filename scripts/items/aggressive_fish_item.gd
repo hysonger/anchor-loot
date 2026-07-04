@@ -10,6 +10,10 @@ const AGGRO_SCORE := 40
 var _aggro_state: AggroState = AggroState.PATROL
 var _windup_timer: float = 0.0
 
+func _ready():
+	super()
+	$AnimatedSprite2D.play()
+
 func _post_move(delta: float) -> void:
 	match _aggro_state:
 		AggroState.PATROL:
@@ -36,7 +40,7 @@ func _dir_to_ship() -> Vector2:
 	return d.normalized()
 
 func _face_ship() -> void:
-	rotation = _dir_to_ship().angle()
+	rotation = _dir_to_ship().angle() + PI / 2 # 实际使用🦀贴图，需要再旋转 90 度以使头朝向正确
 
 func _get_damage() -> int:
 	return AGGRO_DAMAGE

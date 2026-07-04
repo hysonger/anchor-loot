@@ -1,16 +1,22 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene format=3 uid="uid://3tobgolb4obg"]
 
-[ext_resource type="Script" path="res://scripts/items/junk_item.gd" id="1_junk_item"]
+[ext_resource type="Script" uid="uid://6twbd0cfh6pn" path="res://scripts/items/junk_item.gd" id="1_junk_item"]
+[ext_resource type="Texture2D" uid="uid://bl1rhktwrsl6y" path="res://res/enemy_barrel_floating.png" id="2_mancl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1"]
-size = Vector2(24, 24)
+size = Vector2(41, 40)
 
-[node name="JunkItem" type="Area2D"]
+[node name="JunkItem" type="Area2D" unique_id=1515061065]
 script = ExtResource("1_junk_item")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1096126673]
 shape = SubResource("RectangleShape2D_1")
 
-[node name="Body" type="Polygon2D" parent="."]
-polygon = PackedVector2Array(-12, -12, 12, -12, 12, 12, -12, 12)
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=313953603]
+scale = Vector2(0.1875, 0.16796875)
+texture = ExtResource("2_mancl")
+
+[node name="Body" type="Polygon2D" parent="." unique_id=1496280299]
+visible = false
 color = Color(0.35, 0.35, 0.35, 1)
+polygon = PackedVector2Array(-12, -12, 12, -12, 12, 12, -12, 12)

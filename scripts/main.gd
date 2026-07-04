@@ -16,7 +16,8 @@ const POPUP_LIFETIME := 2.0
 @onready var durability_bar: ProgressBar = $HUD/DurabilityBar
 @onready var score_label: Label = $HUD/ScoreLabel
 @onready var message_label: Label = $HUD/MessageLabel
-@onready var start_button: Button = $HUD/StartButton
+@onready var start_button: TextureButton = $HUD/StartButton
+@onready var start_btn_label: Label = $HUD/StartButton/StartBtnLabel
 @onready var tip_clean_timer = $TipCleanTimer
 
 # Popup manager: active floating score labels, newest last (bottom of stack).
@@ -76,7 +77,7 @@ func _on_game_over() -> void:
 	pass  # flow_changed(GAME_OVER) already handles messaging/clear.
 
 func _apply_button(do_show: bool, text: String) -> void:
-	start_button.text = text
+	start_btn_label.text = text
 	start_button.visible = do_show
 	start_button.disabled = not do_show
 

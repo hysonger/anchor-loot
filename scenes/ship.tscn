@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://ddcku5q6ntjgr"]
 
 [ext_resource type="Script" uid="uid://deuhkksft6mi7" path="res://scripts/ship.gd" id="1_ship"]
+[ext_resource type="Texture2D" uid="uid://cgng2e8ppdj3e" path="res://res/ship_full.png" id="2_2gnfn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1"]
 size = Vector2(90, 40)
@@ -13,9 +14,20 @@ script = ExtResource("1_ship")
 shape = SubResource("RectangleShape2D_1")
 
 [node name="Hull" type="Polygon2D" parent="." unique_id=456456992]
+visible = false
 color = Color(0.55, 0.35, 0.2, 1)
 polygon = PackedVector2Array(-45, -10, 45, -10, 40, 10, -40, 10)
 
 [node name="Sail" type="Polygon2D" parent="." unique_id=887387244]
+visible = false
 color = Color(0.9, 0.9, 0.9, 1)
 polygon = PackedVector2Array(0, -50, 0, -10, -20, -10)
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1218041001]
+offset_left = -45.0
+offset_top = -78.0
+offset_right = 60.0
+offset_bottom = 43.0
+texture = ExtResource("2_2gnfn")
+expand_mode = 4
+stretch_mode = 4

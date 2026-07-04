@@ -1,16 +1,23 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene format=3 uid="uid://csg186giqfgxl"]
 
-[ext_resource type="Script" path="res://scripts/items/chest_item.gd" id="1_chest_item"]
+[ext_resource type="Script" uid="uid://d1q0yi4fe0yx" path="res://scripts/items/chest_item.gd" id="1_chest_item"]
+[ext_resource type="Texture2D" uid="uid://bkn4otccn6jwu" path="res://res/item_chest.png" id="2_byrd2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1"]
-size = Vector2(28, 28)
+size = Vector2(51, 49)
 
-[node name="ChestItem" type="Area2D"]
+[node name="ChestItem" type="Area2D" unique_id=692764240]
 script = ExtResource("1_chest_item")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1834974172]
 shape = SubResource("RectangleShape2D_1")
 
-[node name="Body" type="Polygon2D" parent="."]
-polygon = PackedVector2Array(0, -13, 13, -6.5, 13, 6.5, 0, 13, -13, 6.5, -13, -6.5)
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1942435301]
+position = Vector2(-9.536743e-07, -1.9073486e-06)
+scale = Vector2(0.22851565, 0.22656251)
+texture = ExtResource("2_byrd2")
+
+[node name="Body" type="Polygon2D" parent="." unique_id=1454535906]
+visible = false
 color = Color(0.55, 0.35, 0.1, 1)
+polygon = PackedVector2Array(0, -13, 13, -6.5, 13, 6.5, 0, 13, -13, 6.5, -13, -6.5)

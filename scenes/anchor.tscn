@@ -5,9 +5,9 @@
 [ext_resource type="Script" uid="uid://b4tsd5ai4pvyt" path="res://scripts/anchor_states/idle.gd" id="3_idle"]
 [ext_resource type="Script" uid="uid://3lujua0coytv" path="res://scripts/anchor_states/launched.gd" id="4_launched"]
 [ext_resource type="Script" uid="uid://bctpuhecatjpv" path="res://scripts/anchor_states/retracting.gd" id="5_retract"]
+[ext_resource type="Texture2D" uid="uid://c4sy6mchpxxjo" path="res://res/anchor_0deg-256x256.png" id="6_hsvxw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1"]
-size = Vector2(16, 16)
 
 [node name="Anchor" type="Node2D" unique_id=1312433041]
 script = ExtResource("1_anchor")
@@ -25,6 +25,7 @@ script = ExtResource("4_launched")
 script = ExtResource("5_retract")
 
 [node name="Chain" type="Line2D" parent="." unique_id=1533038872]
+points = PackedVector2Array(-5, 5)
 width = 3.0
 default_color = Color(0.35, 0.35, 0.4, 1)
 
@@ -34,5 +35,11 @@ default_color = Color(0.35, 0.35, 0.4, 1)
 shape = SubResource("RectangleShape2D_1")
 
 [node name="Polygon2D" type="Polygon2D" parent="Head" unique_id=1977919206]
+visible = false
 color = Color(0.3, 0.3, 0.3, 1)
 polygon = PackedVector2Array(0, -8, 10, 8, -10, 8)
+
+[node name="Sprite2D" type="Sprite2D" parent="Head" unique_id=748630536]
+position = Vector2(-4.7683716e-07, -9.536743e-07)
+scale = Vector2(0.08203128, 0.087890625)
+texture = ExtResource("6_hsvxw")

@@ -8,6 +8,10 @@ const SCORE := 20
 var _spawn_y: float = 0.0
 var _swing_time: float = 0.0
 
+func _ready():
+	super()
+	$AnimatedSprite2D.play()
+
 func _init_velocity() -> Vector2:
 	_spawn_y = global_position.y
 	_swing_time = randf_range(0.0, TAU)

@@ -1,17 +1,22 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene format=3 uid="uid://bjhs6egs16w6r"]
 
-[ext_resource type="Script" path="res://scripts/items/treasure_item.gd" id="1_treasure_item"]
+[ext_resource type="Script" uid="uid://dw46k1p8057d" path="res://scripts/items/treasure_item.gd" id="1_treasure_item"]
+[ext_resource type="Texture2D" uid="uid://ccvgr7enhcxgi" path="res://res/item_coins.png" id="2_jp6px"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1"]
-size = Vector2(14, 18)
+size = Vector2(24, 22)
 
-[node name="TreasureItem" type="Area2D"]
+[node name="TreasureItem" type="Area2D" unique_id=544537055]
 script = ExtResource("1_treasure_item")
-treasure_size = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1373568617]
 shape = SubResource("RectangleShape2D_1")
 
-[node name="Body" type="Polygon2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1308629443]
+scale = Vector2(0.10156251, 0.09765625)
+texture = ExtResource("2_jp6px")
+
+[node name="Body" type="Polygon2D" parent="." unique_id=100422327]
+visible = false
+color = Color(1, 0.85, 0.1, 1)
 polygon = PackedVector2Array(0, -8, 6, 0, 0, 8, -6, 0)
-color = Color(1.0, 0.85, 0.1, 1)

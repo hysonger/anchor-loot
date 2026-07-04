@@ -2,19 +2,32 @@
 
 [ext_resource type="Script" uid="uid://c25g3g7g01hdq" path="res://scripts/main.gd" id="1_main"]
 [ext_resource type="Script" uid="uid://byp0pj8yv4ju6" path="res://scripts/spawner.gd" id="2_spawner"]
-[ext_resource type="PackedScene" path="res://scenes/ship.tscn" id="3_ship"]
-[ext_resource type="PackedScene" path="res://scenes/anchor.tscn" id="4_anchor"]
+[ext_resource type="Texture2D" uid="uid://dcfpbfbecv41o" path="res://res/bg_sky_sea2.png" id="2_tbgi4"]
+[ext_resource type="PackedScene" uid="uid://ddcku5q6ntjgr" path="res://scenes/ship.tscn" id="3_ship"]
+[ext_resource type="PackedScene" uid="uid://2nd43pddcdlb" path="res://scenes/anchor.tscn" id="4_anchor"]
+[ext_resource type="Texture2D" uid="uid://cfd8axwpwx8dn" path="res://res/ui_hp_bar_bg_clip.png" id="6_o6xl0"]
+[ext_resource type="Texture2D" uid="uid://cmx58ve2gj8p2" path="res://res/ui_btn_start_v2.png" id="6_tefeu"]
+[ext_resource type="Theme" uid="uid://8b67ulv0qfx4" path="res://res/theme.tres" id="6_tipki"]
+[ext_resource type="LabelSettings" uid="uid://5qitupxm71og" path="res://res/label_settings.tres" id="8_85g3d"]
 
 [node name="Main" type="Node2D" unique_id=854110732]
 script = ExtResource("1_main")
 
+[node name="BackgroundPic" type="TextureRect" parent="." unique_id=177294564]
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = ExtResource("2_tbgi4")
+expand_mode = 2
+
 [node name="Background" type="ColorRect" parent="." unique_id=1873312082]
+visible = false
 offset_right = 1152.0
 offset_bottom = 180.0
 mouse_filter = 2
 color = Color(0.55, 0.75, 0.95, 1)
 
 [node name="Water" type="ColorRect" parent="." unique_id=1700317447]
+visible = false
 offset_top = 180.0
 offset_right = 1152.0
 offset_bottom = 600.0
@@ -26,7 +39,7 @@ offset_top = 600.0
 offset_right = 1152.0
 offset_bottom = 648.0
 mouse_filter = 2
-color = Color(0.3, 0.25, 0.18, 1)
+color = Color(0.3019608, 0.2509804, 0.18039216, 0.627451)
 
 [node name="Spawner" type="Node2D" parent="." unique_id=2091880541]
 script = ExtResource("2_spawner")
@@ -38,33 +51,61 @@ script = ExtResource("2_spawner")
 [node name="HUD" type="CanvasLayer" parent="." unique_id=455058947]
 
 [node name="DurabilityBar" type="ProgressBar" parent="HUD" unique_id=1228440353]
-offset_left = 20.0
-offset_top = 20.0
-offset_right = 320.0
-offset_bottom = 48.0
+offset_left = 57.0
+offset_top = 24.0
+offset_right = 391.0
+offset_bottom = 56.0
 mouse_filter = 2
+theme = ExtResource("6_tipki")
 value = 100.0
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="HUD/DurabilityBar" unique_id=674978045]
+layout_mode = 0
+offset_left = -45.0
+offset_top = -22.0
+offset_right = 395.0
+offset_bottom = 42.0
+texture = ExtResource("6_o6xl0")
+expand_mode = 2
+stretch_mode = 4
 
 [node name="ScoreLabel" type="Label" parent="HUD" unique_id=707131598]
 offset_left = 20.0
-offset_top = 56.0
+offset_top = 61.0
 offset_right = 164.0
-offset_bottom = 80.0
+offset_bottom = 85.0
+theme = ExtResource("6_tipki")
 text = "Score: 0"
+label_settings = ExtResource("8_85g3d")
+vertical_alignment = 1
 
 [node name="MessageLabel" type="Label" parent="HUD" unique_id=227147785]
-offset_left = 360.0
-offset_top = 20.0
-offset_right = 1120.0
-offset_bottom = 60.0
+offset_left = 475.0
+offset_top = 24.0
+offset_right = 1128.0
+offset_bottom = 64.0
+label_settings = ExtResource("8_85g3d")
 horizontal_alignment = 2
 
-[node name="StartButton" type="Button" parent="HUD" unique_id=1027347151]
+[node name="StartButton" type="TextureButton" parent="HUD" unique_id=1352448102]
 offset_left = 460.0
 offset_top = 300.0
 offset_right = 692.0
-offset_bottom = 360.0
+offset_bottom = 365.0
+texture_normal = ExtResource("6_tefeu")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="StartBtnLabel" type="Label" parent="HUD/StartButton" unique_id=523573199]
+layout_mode = 0
+offset_right = 232.0
+offset_bottom = 65.0
+theme = ExtResource("6_tipki")
 text = "开始游戏 [Space]"
+label_settings = ExtResource("8_85g3d")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="TipCleanTimer" type="Timer" parent="." unique_id=1657589178]
 wait_time = 5.0
