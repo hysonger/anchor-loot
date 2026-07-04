@@ -2,7 +2,7 @@ class_name NormalFishItem
 extends Item
 # 普通鱼：左移 + 垂直正弦摆动。摆动以 setup() 时的 y 为基准。
 
-const DAMAGE := 25
+const DAMAGE := 10
 const SCORE := 20
 
 var _spawn_y: float = 0.0

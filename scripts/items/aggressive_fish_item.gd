@@ -4,7 +4,7 @@ extends "res://scripts/items/normal_fish_item.gd"
 
 enum AggroState { PATROL, WINDUP, CHARGE }
 
-const AGGRO_DAMAGE := 30
+const AGGRO_DAMAGE := 25
 const AGGRO_SCORE := 40
 
 var _aggro_state: AggroState = AggroState.PATROL
