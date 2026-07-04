@@ -2,9 +2,9 @@ class_name LaunchedState
 extends State
 # Anchor flying outward along fly_direction. Chain drawn from hole to head.
 # Retract when: head reaches seabed OR chain length >= MAX_CHAIN_LEN.
-# (Hazard collisions are handled by the Hazard's own area_entered — the head
+# (Item collisions are handled by the Item's own area_entered — the head
 # is an Area2D in group anchor_head; it does NOT stop on hit, so one shot can
-# pass through multiple hazards.)
+# pass through multiple items.)
 
 func enter() -> void:
 	# Launch from the current hole position.
