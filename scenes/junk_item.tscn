@@ -3,14 +3,16 @@
 [ext_resource type="Script" uid="uid://6twbd0cfh6pn" path="res://scripts/items/junk_item.gd" id="1_junk_item"]
 [ext_resource type="Texture2D" uid="uid://bl1rhktwrsl6y" path="res://res/enemy_barrel_floating.png" id="2_mancl"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1"]
-size = Vector2(41, 40)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mancl"]
+radius = 15.937069
+height = 48.305252
 
 [node name="JunkItem" type="Area2D" unique_id=1515061065]
 script = ExtResource("1_junk_item")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1096126673]
-shape = SubResource("RectangleShape2D_1")
+rotation = -1.1047934
+shape = SubResource("CapsuleShape2D_mancl")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=313953603]
 scale = Vector2(0.1875, 0.16796875)

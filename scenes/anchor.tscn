@@ -8,7 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://b3q57pxu15nky" path="res://res/chain.png" id="6_17eia"]
 [ext_resource type="Texture2D" uid="uid://c4sy6mchpxxjo" path="res://res/anchor_0deg-256x256.png" id="6_hsvxw"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_17eia"]
+height = 22.0
 
 [node name="Anchor" type="Node2D" unique_id=1312433041]
 script = ExtResource("1_anchor")
@@ -36,7 +37,7 @@ texture_mode = 1
 [node name="Head" type="Area2D" parent="." unique_id=1783710916 groups=["anchor_head"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Head" unique_id=1420797330]
-shape = SubResource("RectangleShape2D_1")
+shape = SubResource("CapsuleShape2D_17eia")
 
 [node name="Polygon2D" type="Polygon2D" parent="Head" unique_id=1977919206]
 visible = false

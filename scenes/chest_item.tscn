@@ -10,6 +10,7 @@ size = Vector2(51, 49)
 script = ExtResource("1_chest_item")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1834974172]
+rotation = 0.30019662
 shape = SubResource("RectangleShape2D_1")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1942435301]

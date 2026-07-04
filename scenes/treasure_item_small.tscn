@@ -3,14 +3,14 @@
 [ext_resource type="Script" uid="uid://dw46k1p8057d" path="res://scripts/items/treasure_item.gd" id="1_treasure_item"]
 [ext_resource type="Texture2D" uid="uid://ccvgr7enhcxgi" path="res://res/item_coins.png" id="2_jp6px"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1"]
-size = Vector2(24, 22)
+[sub_resource type="CircleShape2D" id="CircleShape2D_jp6px"]
+radius = 13.038404
 
 [node name="TreasureItem" type="Area2D" unique_id=544537055]
 script = ExtResource("1_treasure_item")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1373568617]
-shape = SubResource("RectangleShape2D_1")
+shape = SubResource("CircleShape2D_jp6px")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1308629443]
 scale = Vector2(0.10156251, 0.09765625)

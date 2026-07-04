@@ -4,8 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://bvvs2v3fen6hl" path="res://res/enemy_matte_00001.png" id="2_l07x2"]
 [ext_resource type="Texture2D" uid="uid://1g4jelil4etm" path="res://res/enemy_matte_00002.png" id="3_4g3lc"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1"]
-size = Vector2(100, 23)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_l07x2"]
+radius = 10.5
+height = 92.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fbo7h"]
 animations = [{
@@ -26,7 +27,8 @@ script = ExtResource("1_normal_fish")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=819220031]
 position = Vector2(2, -0.5)
-shape = SubResource("RectangleShape2D_1")
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_l07x2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=544284728]
 position = Vector2(2.9999924, 1.9073486e-06)

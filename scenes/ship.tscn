@@ -3,15 +3,17 @@
 [ext_resource type="Script" uid="uid://deuhkksft6mi7" path="res://scripts/ship.gd" id="1_ship"]
 [ext_resource type="Texture2D" uid="uid://cgng2e8ppdj3e" path="res://res/ship_full.png" id="2_2gnfn"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1"]
-size = Vector2(90, 40)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2gnfn"]
+radius = 20.0
+height = 83.999985
 
 [node name="Ship" type="Area2D" unique_id=345694495 groups=["ship"]]
 position = Vector2(150, 160)
 script = ExtResource("1_ship")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=508444354]
-shape = SubResource("RectangleShape2D_1")
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_2gnfn")
 
 [node name="Hull" type="Polygon2D" parent="." unique_id=456456992]
 visible = false
