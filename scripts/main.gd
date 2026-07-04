@@ -83,9 +83,12 @@ func _apply_button(do_show: bool, text: String) -> void:
 func _on_timer_timeout() -> void:
 	message_label.text = ""
 
-func _on_score_popup(points: int, at_position: Vector2) -> void:
+func _on_score_popup(points: int, multiplier: int, at_position: Vector2) -> void:
 	var label := Label.new()
-	label.text = "+%d" % points
+	if multiplier > 1:
+		label.text = "+%d (%dx)" % [points, multiplier]
+	else:
+		label.text = "+%d" % points
 	label.add_theme_font_size_override("font_size", POPUP_FONT_SIZE)
 	label.add_theme_color_override("font_color", Color.GOLD)
 	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
