@@ -27,7 +27,7 @@
 const ANCHOR_FIRE_SPEED := 800.0
 # Anchor speed curve: horizontal shots run at this fraction of vertical speed.
 # 0.0 = motionless at horizontal, 1.0 = no compensation (all directions equal).
-const ANCHOR_SPEED_MIN_RATIO := 0.4
+const ANCHOR_SPEED_MIN_RATIO := 0.8125
 ```
 
 ### 2. `scripts/anchor_states/launched.gd` — 应用速度补偿
@@ -43,5 +43,5 @@ anchor.head.global_position += anchor.fly_direction * speed * delta
 ## 验证
 
 - 运行游戏，垂直向下点击发射锚 → 速度为 800（全速）
-- 水平点击发射锚 → 速度约为 320（800 × 0.4）
-- 45° 点击发射锚 → 速度约为 560（800 × 0.7）
+- 水平点击发射锚 → 速度为 650（800 × 0.8125，等效旧版全速）
+- 45° 点击发射锚 → 速度为 725（800 × 0.90625）
