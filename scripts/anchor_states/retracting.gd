@@ -16,5 +16,7 @@ func physics_process(delta: float) -> void:
 		return
 	# Pull back at fixed px/s, but never overshoot the hole.
 	var step := minf(dist, Game.ANCHOR_RETRACT_SPEED * delta)
-	anchor.head.global_position += to_hole.normalized() * step
+	var direction := to_hole.normalized()
+	anchor.head.global_position += direction * step
+	anchor.head.rotation = direction.angle() + PI / 2
 	anchor._update_chain()

@@ -5,6 +5,7 @@ extends State
 func enter() -> void:
 	anchor.combo_count = 0
 	anchor.head.visible = true
+	anchor.head.rotation = 0.0
 	anchor.chain.visible = false
 	anchor._snap_head_to_hole()
 
