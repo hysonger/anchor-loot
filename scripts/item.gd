@@ -31,9 +31,14 @@ func _post_move(_delta: float) -> void:
 
 func _get_damage() -> int:               return 0              # 默认无伤害（子类覆写）
 
+func _get_score() -> int:                return 0              # 默认无得分（子类覆写）
+
+func _on_killed() -> void:               pass                  # 被锚击毁钩子（子类覆写）
+
 func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group("anchor_head"):
-		Game.add_score(Game.SCORE_PER_KILL)
+		Game.add_score(_get_score())
+		_on_killed()
 		queue_free()
 	elif area.is_in_group("ship"):
 		Game.take_damage(_get_damage())

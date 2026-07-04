@@ -9,3 +9,6 @@ func _init_velocity() -> Vector2:
 
 func _get_damage() -> int:
 	return DAMAGE
+
+func _get_score() -> int:
+	return Game.SCORE_PER_KILL
