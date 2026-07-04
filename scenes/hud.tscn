@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://c1yf5nxnjn48i"]
+
+[ext_resource type="PackedScene" uid="uid://db85i404obyh2" path="res://scenes/durability_bar.tscn" id="1_6fi6k"]
+[ext_resource type="Theme" uid="uid://8b67ulv0qfx4" path="res://res/theme.tres" id="2_uo2fv"]
+[ext_resource type="LabelSettings" uid="uid://5qitupxm71og" path="res://res/label_settings.tres" id="3_047uy"]
+[ext_resource type="PackedScene" uid="uid://bwy41l7d5yweb" path="res://scenes/start_button.tscn" id="4_5pdws"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_85g3d"]
+font_size = 20
+outline_size = 4
+outline_color = Color(1.0588765e-06, 0.51909167, 0.7248655, 1)
+shadow_color = Color(0, 0, 0, 0.627451)
+
+[node name="HUD" type="CanvasLayer" unique_id=232882309]
+
+[node name="DurabilityBar" parent="." unique_id=462928597 instance=ExtResource("1_6fi6k")]
+
+[node name="ScoreLabel" type="Label" parent="." unique_id=1281524965]
+offset_left = 20.0
+offset_top = 61.0
+offset_right = 164.0
+offset_bottom = 85.0
+theme = ExtResource("2_uo2fv")
+text = "Score: 0"
+label_settings = ExtResource("3_047uy")
+vertical_alignment = 1
+
+[node name="MessageLabel" type="Label" parent="." unique_id=1311280828]
+offset_left = 475.0
+offset_top = 24.0
+offset_right = 1128.0
+offset_bottom = 64.0
+theme = ExtResource("2_uo2fv")
+text = "Anchor Loot"
+label_settings = SubResource("LabelSettings_85g3d")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="StartButton" parent="." unique_id=494559653 instance=ExtResource("4_5pdws")]

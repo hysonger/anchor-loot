@@ -47,7 +47,7 @@ const FISH_SWING_FREQ := 2.5
 
 # ---- 攻击性鱼（AggressiveFish）----
 const AGGRO_DETECT_DIST   := 576.0
-const AGGRO_WINDUP_TIME   := 0.5
+const AGGRO_WINDUP_TIME   := 0.3
 const AGGRO_CHARGE_SPEED  := 320.0
 
 # ---- 宝藏（TreasureItem）----

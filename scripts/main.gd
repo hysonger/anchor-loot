@@ -37,12 +37,7 @@ func _ready() -> void:
 	Game.game_over.connect(_on_game_over)
 	Game.score_popup.connect(_on_score_popup)
 
-	# StartButton drives Game; build its Space shortcut in code.
-	var sc := Shortcut.new()
-	var ev := InputEventKey.new()
-	ev.physical_keycode = KEY_SPACE
-	sc.events.append(ev)
-	start_button.shortcut = sc
+	# StartButton drives Game. Connect to the func in Game
 	start_button.pressed.connect(Game.on_start_button_pressed)
 
 	# Hover overlay: start fully transparent.
@@ -66,7 +61,7 @@ func _on_flow_changed(state: Game.FlowState) -> void:
 	match state:
 		Game.FlowState.READY:
 			message_label.text = ""
-			_apply_button(true, "开始游戏 [Space]")
+			_apply_button(true, "开始游戏")
 			_clear_popups()
 			spawner.clear_all()
 		Game.FlowState.PLAYING:
@@ -76,7 +71,7 @@ func _on_flow_changed(state: Game.FlowState) -> void:
 			tip_clean_timer.call_deferred("start")
 		Game.FlowState.GAME_OVER:
 			message_label.text = "GAME OVER"
-			_apply_button(true, "重新开始 [Space]")
+			_apply_button(true, "重新开始")
 			_clear_popups()
 			spawner.clear_all()
 

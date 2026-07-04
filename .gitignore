@@ -17,3 +17,5 @@
 
 # Claude Code specific ignores
 .claude/worktrees/
+
+dist/

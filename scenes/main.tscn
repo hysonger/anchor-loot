@@ -5,23 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://dcfpbfbecv41o" path="res://res/bg_sky_sea2.png" id="2_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://ddcku5q6ntjgr" path="res://scenes/ship.tscn" id="3_ship"]
 [ext_resource type="PackedScene" uid="uid://2nd43pddcdlb" path="res://scenes/anchor.tscn" id="4_anchor"]
-[ext_resource type="Texture2D" uid="uid://cfd8axwpwx8dn" path="res://res/ui_hp_bar_bg_clip.png" id="6_o6xl0"]
-[ext_resource type="Texture2D" uid="uid://cmx58ve2gj8p2" path="res://res/ui_btn_start_v2.png" id="6_tefeu"]
-[ext_resource type="Theme" uid="uid://8b67ulv0qfx4" path="res://res/theme.tres" id="6_tipki"]
-[ext_resource type="LabelSettings" uid="uid://5qitupxm71og" path="res://res/label_settings.tres" id="8_85g3d"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_85g3d"]
-font_size = 20
-outline_size = 4
-outline_color = Color(1.0588765e-06, 0.51909167, 0.7248655, 1)
-shadow_color = Color(0, 0, 0, 0.627451)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_capsule"]
-bg_color = Color(0, 0, 0, 0.25)
-corner_radius_top_left = 28
-corner_radius_top_right = 28
-corner_radius_bottom_right = 28
-corner_radius_bottom_left = 28
+[ext_resource type="PackedScene" uid="uid://c1yf5nxnjn48i" path="res://scenes/hud.tscn" id="6_tefeu"]
 
 [node name="Main" type="Node2D" unique_id=854110732]
 script = ExtResource("1_main")
@@ -61,87 +45,12 @@ script = ExtResource("2_spawner")
 
 [node name="Anchor" parent="." unique_id=1422301387 instance=ExtResource("4_anchor")]
 
-[node name="HUD" type="CanvasLayer" parent="." unique_id=455058947]
-
-[node name="DurabilityBar" type="ProgressBar" parent="HUD" unique_id=1228440353]
-offset_left = 57.0
-offset_top = 24.0
-offset_right = 391.0
-offset_bottom = 56.0
-mouse_filter = 2
-theme = ExtResource("6_tipki")
-value = 100.0
-show_percentage = false
-metadata/_edit_group_ = true
-
-[node name="Label" type="Label" parent="HUD/DurabilityBar" unique_id=607858717]
-layout_mode = 0
-offset_left = 15.0
-offset_right = 334.0
-offset_bottom = 34.0
-text = "船只耐久"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="TextureRect" type="TextureRect" parent="HUD/DurabilityBar" unique_id=674978045]
-layout_mode = 0
-offset_left = -45.0
-offset_top = -22.0
-offset_right = 395.0
-offset_bottom = 42.0
-texture = ExtResource("6_o6xl0")
-expand_mode = 2
-stretch_mode = 4
-
-[node name="ScoreLabel" type="Label" parent="HUD" unique_id=707131598]
-offset_left = 20.0
-offset_top = 61.0
-offset_right = 164.0
-offset_bottom = 85.0
-theme = ExtResource("6_tipki")
-text = "Score: 0"
-label_settings = ExtResource("8_85g3d")
-vertical_alignment = 1
-
-[node name="MessageLabel" type="Label" parent="HUD" unique_id=227147785]
-offset_left = 475.0
-offset_top = 24.0
-offset_right = 1128.0
-offset_bottom = 64.0
-theme = ExtResource("6_tipki")
-text = "Anchor Loot"
-label_settings = SubResource("LabelSettings_85g3d")
-horizontal_alignment = 2
-vertical_alignment = 1
-
-[node name="StartButton" type="TextureButton" parent="HUD" unique_id=1352448102]
-offset_left = 460.0
-offset_top = 300.0
-offset_right = 692.0
-offset_bottom = 365.0
-texture_normal = ExtResource("6_tefeu")
-ignore_texture_size = true
-stretch_mode = 5
-
-[node name="StartBtnLabel" type="Label" parent="HUD/StartButton" unique_id=523573199]
-layout_mode = 0
-offset_right = 232.0
-offset_bottom = 65.0
-theme = ExtResource("6_tipki")
-text = "开始游戏 [Space]"
-label_settings = ExtResource("8_85g3d")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="HoverOverlay" type="Panel" parent="HUD/StartButton" unique_id=-1153374643]
-layout_mode = 0
-offset_right = 232.0
-offset_bottom = 65.0
-mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_capsule")
+[node name="HUD" parent="." unique_id=232882309 instance=ExtResource("6_tefeu")]
 
 [node name="TipCleanTimer" type="Timer" parent="." unique_id=1657589178]
 wait_time = 5.0
 one_shot = true
 
 [connection signal="timeout" from="TipCleanTimer" to="." method="_on_timer_timeout"]
+
+[editable path="HUD"]
