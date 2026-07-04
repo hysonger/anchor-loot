@@ -2,7 +2,7 @@ class_name Spawner
 extends Node2D
 # Periodically spawns items on the right edge at a random depth while playing.
 
-@export var spawn_interval := 1.4
+@export var spawn_interval := 1.2
 
 const SPAWN_TABLE: Array[Dictionary] = [
 	{"scene": preload("res://scenes/junk_item.tscn"),             "weight": 0.25},
