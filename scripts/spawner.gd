@@ -25,7 +25,12 @@ func _spawn_one() -> void:
     var scene: PackedScene = _pick_spawn_scene()
     var item: Item = scene.instantiate()
     add_child(item)
-    var y := randf_range(Game.SPAWN_Y_MIN, Game.SPAWN_Y_MAX)
+    var y_min := Game.SPAWN_Y_MIN
+    var y_max := Game.SPAWN_Y_MAX
+    if item is ChestItem:
+        y_min = Game.CHEST_SPAWN_Y_MIN
+        y_max = Game.CHEST_SPAWN_Y_MAX
+    var y := randf_range(y_min, y_max)
     item.setup(Vector2(Game.SPAWN_X, y))
 
 func _pick_spawn_scene() -> PackedScene:

@@ -44,6 +44,8 @@ const CHEST_VX_MIN := -150.0
 const CHEST_VX_MAX := -80.0
 const CHEST_SWING_AMP  := 8.0
 const CHEST_SWING_FREQ := 1.5
+const CHEST_SPAWN_Y_MIN := 280
+const CHEST_SPAWN_Y_MAX := 480
 
 # ---- 鱼（NormalFish / AggressiveFish 巡逻态）----
 const FISH_VX_MIN    := -150.0
