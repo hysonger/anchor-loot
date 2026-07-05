@@ -6,6 +6,7 @@ const ARRIVE_THRESHOLD := 6.0
 
 func enter() -> void:
     anchor.chain.visible = true
+    anchor.head.monitorable = true
 
 func physics_process(delta: float) -> void:
     var hole := anchor._get_hole_global()

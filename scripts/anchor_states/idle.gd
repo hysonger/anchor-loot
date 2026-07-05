@@ -7,6 +7,7 @@ func enter() -> void:
 	anchor.head.visible = true
 	anchor.head.rotation = 0.0
 	anchor.chain.visible = false
+	anchor.head.monitorable = false
 	anchor._snap_head_to_hole()
 
 func physics_process(_delta: float) -> void:

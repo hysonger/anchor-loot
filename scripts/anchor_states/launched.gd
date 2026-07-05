@@ -10,6 +10,7 @@ func enter() -> void:
 	# Launch from the current hole position.
 	anchor.head.global_position = anchor._get_hole_global()
 	anchor.chain.visible = true
+	anchor.head.monitorable = true
 	anchor._update_chain()
 
 func physics_process(delta: float) -> void:
