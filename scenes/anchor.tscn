@@ -29,8 +29,7 @@ script = ExtResource("5_retract")
 [node name="Chain" type="Line2D" parent="." unique_id=1533038872]
 texture_repeat = 2
 points = PackedVector2Array(-5, 5)
-width = 3.0
-default_color = Color(0.35, 0.35, 0.4, 1)
+width = 6.0
 texture = ExtResource("6_17eia")
 texture_mode = 1
 
