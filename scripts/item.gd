@@ -6,6 +6,7 @@ extends Area2D
 
 var velocity: Vector2 = Vector2.ZERO
 var _spawn_protection: float = 0.0
+var _dying: bool = false
 
 func _ready() -> void:
 	area_entered.connect(_on_area_entered)
@@ -40,7 +41,7 @@ func _get_score() -> int:                return 0              # 默认无得分
 func _on_killed() -> void:               pass                  # 被锚击毁钩子（子类覆写）
 
 func _on_area_entered(area: Area2D) -> void:
-	if _spawn_protection > 0.0:
+	if _spawn_protection > 0.0 or _dying:
 		return
 	if area.is_in_group("anchor_head"):
 		var anchor := area.get_parent() as Anchor
@@ -49,7 +50,8 @@ func _on_area_entered(area: Area2D) -> void:
 		Game.add_score(final_score)
 		Game.score_popup.emit(final_score, mult, Vector2(Game.SHIP_X, Game.WATERLINE_Y))
 		_on_killed()
-		queue_free()
+		if not _dying:
+			queue_free()
 	elif area.is_in_group("ship"):
 		Game.take_damage(_get_damage())
 		queue_free()

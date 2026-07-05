@@ -20,14 +20,24 @@ func _init_velocity() -> Vector2:
 	return Vector2(randf_range(Game.CHEST_VX_MIN, Game.CHEST_VX_MAX), 0.0)
 
 func _post_move(delta: float) -> void:
+	if _dying:
+		return
 	super._post_move(delta)
 	_swing_time += delta
 	global_position.y = _spawn_y + sin(_swing_time * Game.CHEST_SWING_FREQ) * Game.CHEST_SWING_AMP
 
 func _on_killed() -> void:
+	_dying = true
+	$CollisionShape2D.set_deferred("disabled", true)
+	$Sprite2D.texture = preload("res://res/item_chest open.png")
+	velocity = Vector2(0.0, 40.0)
+	var tween := create_tween()
+	tween.tween_property(self, "modulate:a", 0.0, 0.5).set_trans(Tween.TRANS_QUAD)
+	tween.tween_callback(queue_free)
+
 	var scene: PackedScene = _pick_loot_scene()
 	var item: Item = scene.instantiate()
-	get_parent().call_deferred("add_child", item) # 需要使用 call_deferred 语法，否则会报错
+	get_parent().call_deferred("add_child", item)
 	item.setup(global_position)
 
 func _pick_loot_scene() -> PackedScene:

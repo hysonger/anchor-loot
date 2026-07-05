@@ -13,8 +13,11 @@ func _init_velocity() -> Vector2:
 
 func _post_move(_delta: float) -> void:
 	super._post_move(_delta)
-	if global_position.y >= Game.SEABED_Y:
-		queue_free()
+	if not _dying and global_position.y >= Game.SEABED_Y:
+		_dying = true
+		var tween := create_tween()
+		tween.tween_property(self, "modulate:a", 0.0, 0.3).set_trans(Tween.TRANS_QUAD)
+		tween.tween_callback(queue_free)
 
 func _get_damage() -> int:
 	return DAMAGE
