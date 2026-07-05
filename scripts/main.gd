@@ -10,6 +10,8 @@ const POPUP_TWEEN_DURATION := 0.3
 const POPUP_FONT_SIZE := 18
 const POPUP_LIFETIME := 2.0
 const POPUP_LABEL_SETTINGS = preload("res://res/label_settings_popup.tres")
+const TITLE_BG_START = preload("res://res/start_bg.png")
+const TITLE_BG_GAMEOVER = preload("res://res/gameover_bg.png")
 
 @onready var spawner: Spawner = $Spawner
 @onready var ship: Ship = $Ship
@@ -21,6 +23,7 @@ const POPUP_LABEL_SETTINGS = preload("res://res/label_settings_popup.tres")
 @onready var start_button: TextureButton = $HUD/StartButton
 @onready var start_btn_label: Label = $HUD/StartButton/StartBtnLabel
 @onready var start_btn_overlay: Panel = $HUD/StartButton/HoverOverlay
+@onready var title_bg: TextureRect = $HUD/TitleBg
 @onready var msg_clean_timer = $MsgCleanTimer
 
 # Popup manager: active floating score labels, newest last (bottom of stack).
@@ -71,16 +74,21 @@ func _on_flow_changed(state: Game.FlowState) -> void:
         Game.set_paused(false)
     match state:
         Game.FlowState.READY:
+            title_bg.texture = TITLE_BG_START
+            title_bg.visible = true
             message_label.text = ""
             _apply_button(true, "开始游戏")
             _clear_popups()
             spawner.clear_all()
         Game.FlowState.PLAYING:
+            title_bg.visible = false
             start_button.visible = false
             start_button.disabled = true
             show_message_oneshot("点击鼠标🖱抛锚！再次点击收回！")
 
         Game.FlowState.GAME_OVER:
+            title_bg.texture = TITLE_BG_GAMEOVER
+            title_bg.visible = true
             message_label.text = "GAME OVER"
             _apply_button(true, "重新开始")
             _clear_popups()

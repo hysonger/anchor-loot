@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://ddcku5q6ntjgr" path="res://scenes/ship.tscn" id="3_ship"]
 [ext_resource type="PackedScene" uid="uid://2nd43pddcdlb" path="res://scenes/anchor.tscn" id="4_anchor"]
 [ext_resource type="PackedScene" uid="uid://c1yf5nxnjn48i" path="res://scenes/hud.tscn" id="6_tefeu"]
-[ext_resource type="Script" uid="uid://16t4i30izto7xp" path="res://scripts/pause_handler.gd" id="7_pause_handler"]
+[ext_resource type="Script" uid="uid://dpt4volkjyn38" path="res://scripts/pause_handler.gd" id="7_pause_handler"]
 
 [node name="Main" type="Node2D" unique_id=854110732]
 script = ExtResource("1_main")
@@ -46,10 +46,13 @@ script = ExtResource("2_spawner")
 
 [node name="Anchor" parent="." unique_id=1422301387 instance=ExtResource("4_anchor")]
 
-[node name="PauseHandler" type="Node" parent="."]
+[node name="PauseHandler" type="Node" parent="." unique_id=1023796716]
 script = ExtResource("7_pause_handler")
 
 [node name="HUD" parent="." unique_id=232882309 instance=ExtResource("6_tefeu")]
+
+[node name="MessageLabel" parent="HUD" index="3" unique_id=1311280828]
+text = "锚不准 Anchor Loot"
 
 [node name="MsgCleanTimer" type="Timer" parent="." unique_id=1657589178]
 wait_time = 5.0
