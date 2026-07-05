@@ -15,8 +15,11 @@ signal score_changed(score: int)
 signal game_over()
 signal flow_changed(state: FlowState)
 signal score_popup(points: int, multiplier: int, at_position: Vector2)
+signal paused()
+signal unpaused()
 
 var flow_state: FlowState = FlowState.READY
+var is_paused: bool = false
 var durability: int = MAX_DURABILITY
 var max_durability: int = MAX_DURABILITY
 var score: int = 0
@@ -74,6 +77,21 @@ const ANCHOR_SPEED_MIN_RATIO := 0.8125   # horizontal speed / vertical speed (65
 
 func is_playing() -> bool:
     return flow_state == FlowState.PLAYING
+
+func set_paused(on: bool) -> void:
+    if on == is_paused:
+        return
+    if on:
+        # Only allow pause during PLAYING.
+        if flow_state != FlowState.PLAYING:
+            return
+        is_paused = true
+        get_tree().paused = true
+        paused.emit()
+    else:
+        is_paused = false
+        get_tree().paused = false
+        unpaused.emit()
 
 func _ready() -> void:
     _audio_player = AudioStreamPlayer.new()

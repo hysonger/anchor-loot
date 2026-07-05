@@ -14,6 +14,7 @@ const POPUP_LABEL_SETTINGS = preload("res://res/label_settings_popup.tres")
 @onready var spawner: Spawner = $Spawner
 @onready var ship: Ship = $Ship
 @onready var anchor: Anchor = $Anchor
+@onready var pause_handler: Node = $PauseHandler
 @onready var durability_bar: ProgressBar = $HUD/DurabilityBar
 @onready var score_label: Label = $HUD/ScoreLabel
 @onready var message_label: Label = $HUD/MessageLabel
@@ -54,6 +55,9 @@ func _ready() -> void:
     _on_score_changed(Game.score)
     _on_flow_changed(Game.flow_state)
 
+    # Wire pause handler to message label.
+    pause_handler._message_label = message_label
+
 func _on_durability_changed(current: int, maxv: int) -> void:
     durability_bar.max_value = maxv
     durability_bar.value = current
@@ -62,6 +66,9 @@ func _on_score_changed(s: int) -> void:
     score_label.text = "分数: %d" % s
 
 func _on_flow_changed(state: Game.FlowState) -> void:
+    # Unpause when transitioning away from PLAYING (safety guard).
+    if Game.is_paused:
+        Game.set_paused(false)
     match state:
         Game.FlowState.READY:
             message_label.text = ""
