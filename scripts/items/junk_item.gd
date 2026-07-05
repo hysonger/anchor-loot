@@ -6,11 +6,11 @@ const DAMAGE := 10
 const SCORE := 10
 
 func _init_velocity() -> Vector2:
-	return Vector2(randf_range(Game.JUNK_VX_MIN, Game.JUNK_VX_MAX),
-					randf_range(Game.JUNK_VY_MIN, Game.JUNK_VY_MAX))
+    return Vector2(randf_range(Game.JUNK_VX_MIN, Game.JUNK_VX_MAX),
+                    randf_range(Game.JUNK_VY_MIN, Game.JUNK_VY_MAX))
 
 func _get_damage() -> int:
-	return DAMAGE
+    return DAMAGE
 
 func _get_score() -> int:
-	return SCORE
+    return SCORE

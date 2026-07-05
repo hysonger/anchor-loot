@@ -7,26 +7,26 @@ extends Node
 var current: State
 
 func _collect_states() -> Dictionary:
-	var d := {}
-	for child in get_children():
-		if child is State:
-			d[child.name] = child
-	return d
+    var d := {}
+    for child in get_children():
+        if child is State:
+            d[child.name] = child
+    return d
 
 func init(initial_state_name: String, anchor: Anchor) -> void:
-	for s in states.values():
-		s.anchor = anchor
-	change_to(initial_state_name)
+    for s in states.values():
+        s.anchor = anchor
+    change_to(initial_state_name)
 
 func change_to(state_name: String) -> void:
-	if not states.has(state_name):
-		push_error("StateMachine: unknown state '%s'" % state_name)
-		return
-	if current != null:
-		current.exit()
-	current = states[state_name]
-	current.enter()
+    if not states.has(state_name):
+        push_error("StateMachine: unknown state '%s'" % state_name)
+        return
+    if current != null:
+        current.exit()
+    current = states[state_name]
+    current.enter()
 
 func _physics_process(delta: float) -> void:
-	if current != null:
-		current.physics_process(delta)
+    if current != null:
+        current.physics_process(delta)

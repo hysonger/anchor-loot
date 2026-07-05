@@ -85,7 +85,6 @@ Groups are set on the **Ship** and **Anchor Head** nodes. The Spawner parents ru
 
 ## Godot 4 pitfalls (learned during development & build)
 
-- The code uses **Tab** as indentation instead of spaces. Keep cautious when editing.
 - Explicitly claim correct collision layers in the scene files, or the function will be broken.
 - **ColorRects eat mouse clicks**: `Control` nodes default to `mouse_filter = STOP`, which consumes clicks before `_unhandled_input`. Set `mouse_filter = 2` (IGNORE) on non-interactive HUD controls.
 - **Groups are a node-header attribute**, not a body property line. Writing `groups = ["x"]` as a property line is silently ignored in Godot 4 — the node gets no runtime group, `is_in_group()` returns false, and collision dispatch silently never fires. Put groups in the node header.

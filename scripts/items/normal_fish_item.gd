@@ -9,21 +9,21 @@ var _spawn_y: float = 0.0
 var _swing_time: float = 0.0
 
 func _ready():
-	super()
-	$AnimatedSprite2D.play()
+    super()
+    $AnimatedSprite2D.play()
 
 func _init_velocity() -> Vector2:
-	_spawn_y = global_position.y
-	_swing_time = randf_range(0.0, TAU)
-	return Vector2(randf_range(Game.FISH_VX_MIN, Game.FISH_VX_MAX), 0.0)
+    _spawn_y = global_position.y
+    _swing_time = randf_range(0.0, TAU)
+    return Vector2(randf_range(Game.FISH_VX_MIN, Game.FISH_VX_MAX), 0.0)
 
 func _post_move(delta: float) -> void:
-	super._post_move(delta)
-	_swing_time += delta
-	global_position.y = _spawn_y + sin(_swing_time * Game.FISH_SWING_FREQ) * Game.FISH_SWING_AMP
+    super._post_move(delta)
+    _swing_time += delta
+    global_position.y = _spawn_y + sin(_swing_time * Game.FISH_SWING_FREQ) * Game.FISH_SWING_AMP
 
 func _get_damage() -> int:
-	return DAMAGE
+    return DAMAGE
 
 func _get_score() -> int:
-	return SCORE
+    return SCORE

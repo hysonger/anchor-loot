@@ -1,6 +1,12 @@
 extends Node
 # Game singleton — global flow state, durability, score, signals, and tunable constants.
 
+# ---- Audio ----
+const COIN_SOUND := preload("res://res/sfx_coin_double3.wav")
+const HIT_SOUND := preload("res://res/Hit 2.wav")
+const EXPLOSION_SOUND := preload("res://res/Explosion 2.wav")
+var _audio_player: AudioStreamPlayer = null
+
 # ---- Flow state machine (enum + match; too simple for State classes) ----
 enum FlowState { READY, PLAYING, GAME_OVER }
 
@@ -65,37 +71,57 @@ const ANCHOR_SPEED_MIN_RATIO := 0.8125   # horizontal speed / vertical speed (65
 # No FIRE_ANGLE_MAX_DEG: the only aim constraint is "never up" (dir.y >= 0); horizontal is the max.
 
 func is_playing() -> bool:
-	return flow_state == FlowState.PLAYING
+    return flow_state == FlowState.PLAYING
+
+func _ready() -> void:
+    _audio_player = AudioStreamPlayer.new()
+    add_child(_audio_player)
+
+func play_hit() -> void:
+    if _audio_player != null:
+        _audio_player.stream = COIN_SOUND
+        _audio_player.play()
+
+func play_ship_hit() -> void:
+    if _audio_player != null:
+        _audio_player.stream = HIT_SOUND
+        _audio_player.play()
+
+func play_game_over() -> void:
+    if _audio_player != null:
+        _audio_player.stream = EXPLOSION_SOUND
+        _audio_player.play()
 
 func take_damage(n: int) -> void:
-	if flow_state != FlowState.PLAYING:
-		return
-	durability = max(0, durability - n)
-	durability_changed.emit(durability, max_durability)
-	if durability <= 0:
-		game_over.emit()
-		_set_flow(FlowState.GAME_OVER)
+    if flow_state != FlowState.PLAYING:
+        return
+    durability = max(0, durability - n)
+    durability_changed.emit(durability, max_durability)
+    if durability <= 0:
+        play_game_over()
+        game_over.emit()
+        _set_flow(FlowState.GAME_OVER)
 
 func add_score(n: int) -> void:
-	score += n
-	score_changed.emit(score)
+    score += n
+    score_changed.emit(score)
 
 func reset() -> void:
-	durability = MAX_DURABILITY
-	score = 0
-	durability_changed.emit(durability, max_durability)
-	score_changed.emit(score)
+    durability = MAX_DURABILITY
+    score = 0
+    durability_changed.emit(durability, max_durability)
+    score_changed.emit(score)
 
 func on_start_button_pressed() -> void:
-	match flow_state:
-		FlowState.READY:
-			_set_flow(FlowState.PLAYING)
-		FlowState.GAME_OVER:
-			reset()
-			_set_flow(FlowState.PLAYING)
-		FlowState.PLAYING:
-			pass  # ignored
+    match flow_state:
+        FlowState.READY:
+            _set_flow(FlowState.PLAYING)
+        FlowState.GAME_OVER:
+            reset()
+            _set_flow(FlowState.PLAYING)
+        FlowState.PLAYING:
+            pass  # ignored
 
 func _set_flow(s: FlowState) -> void:
-	flow_state = s
-	flow_changed.emit(s)
+    flow_state = s
+    flow_changed.emit(s)

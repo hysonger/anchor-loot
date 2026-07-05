@@ -7,10 +7,10 @@ extends Node
 var anchor: Anchor  # back-reference to the Anchor node (set by anchor.gd on _ready)
 
 func enter() -> void:
-	pass
+    pass
 
 func exit() -> void:
-	pass
+    pass
 
 func physics_process(_delta: float) -> void:
-	pass
+    pass
