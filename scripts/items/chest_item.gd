@@ -41,16 +41,7 @@ func _on_killed() -> void:
     item.setup(global_position)
 
 func _pick_loot_scene() -> PackedScene:
-    var roll := randf()
-    var total := 0.0
-    for entry in LOOT_TABLE:
-        total += entry.weight
-    for entry in LOOT_TABLE:
-        var norm: float = entry.weight / total
-        if roll <= norm:
-            return entry.scene
-        roll -= norm
-    return LOOT_TABLE[-1].scene
+    return Game.chest_loot_compensator.pick_and_record()
 
 func _get_damage() -> int:
     return DAMAGE

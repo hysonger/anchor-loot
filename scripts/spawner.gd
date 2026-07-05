@@ -34,13 +34,7 @@ func _spawn_one() -> void:
     item.setup(Vector2(Game.SPAWN_X, y))
 
 func _pick_spawn_scene() -> PackedScene:
-    var roll := randf()
-    var acc := 0.0
-    for entry in SPAWN_TABLE:
-        acc += entry.weight
-        if roll <= acc:
-            return entry.scene
-    return SPAWN_TABLE[-1].scene
+    return Game.spawn_compensator.pick_and_record()
 
 func clear_all() -> void:
     for c in get_children():

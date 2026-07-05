@@ -93,9 +93,34 @@ func set_paused(on: bool) -> void:
         get_tree().paused = false
         unpaused.emit()
 
+const COMPENSATION_STRENGTH := 0.5
+const WeightedTableClass := preload("res://scripts/weighted_table.gd")
+
+var spawn_compensator: WeightedTableClass = null
+var chest_loot_compensator: WeightedTableClass = null
+
 func _ready() -> void:
+    randomize()
     _audio_player = AudioStreamPlayer.new()
     add_child(_audio_player)
+    _init_compensators()
+
+func _init_compensators() -> void:
+    spawn_compensator = WeightedTableClass.new()
+    spawn_compensator.init(
+        load("res://scripts/spawner.gd").SPAWN_TABLE,
+        func(scene: PackedScene) -> String:
+            return scene.resource_path.get_file().trim_suffix(".tscn"),
+        COMPENSATION_STRENGTH
+    )
+
+    chest_loot_compensator = WeightedTableClass.new()
+    chest_loot_compensator.init(
+        load("res://scripts/items/chest_item.gd").LOOT_TABLE,
+        func(scene: PackedScene) -> String:
+            return scene.resource_path.get_file().trim_suffix(".tscn"),
+        COMPENSATION_STRENGTH
+    )
 
 func play_hit() -> void:
     if _audio_player != null:
@@ -131,6 +156,8 @@ func reset() -> void:
     score = 0
     durability_changed.emit(durability, max_durability)
     score_changed.emit(score)
+    spawn_compensator.reset()
+    chest_loot_compensator.reset()
 
 func on_start_button_pressed() -> void:
     match flow_state:
